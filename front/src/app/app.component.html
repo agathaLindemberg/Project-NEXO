@@ -1,0 +1,23 @@
+<body>
+    <header>
+        <div>
+            <ng-container *ngIf="router.url !== '/' && router.url !== '/login' && router.url !== '/cadastro'">                <img src="assets/imagens/icone-duvida.jpg" alt="Ícone Dúvida">
+                <div class="informacoes-usuario">
+                    <img src="assets/imagens/icone-dinheiro.jpg" alt="Ícone Dinheiro">
+                    <p>{{ usuario?.qtd_moedas }}</p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="nome-projeto">
+            <h1>NEXO</h1>
+        </div>
+        <div>
+            <ng-container *ngIf="router.url !== '/' && router.url !== '/login' && router.url !== '/cadastro'">
+                <img style="margin: 0px 8px;" src="assets/imagens/icone-bola.jpg" alt="Ícone Bola">
+                <img style="margin: 0px 8px;" src="assets/imagens/icone-informacao.jpg" alt="Ícone Informação">
+                <img style="margin: 0px 8px;" src="assets/imagens/icone-usuario.jpg" alt="Ícone Usuário">
+            </ng-container>
+        </div>
+    </header>
+    <router-outlet></router-outlet>
+</body>

@@ -1,0 +1,91 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-card {
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 50px 60px 50px;
+    width: 30%;
+}
+
+header {
+    width: 100%;
+    font-family: "Darker Grotesque", serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-group {
+    text-align: start;
+    margin-bottom: 15px;
+}
+
+.cadastro-card {
+    text-align: center;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+p {
+    font-family: "Darker Grotesque", serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid #333;
+    margin-top: 20px;
+}
