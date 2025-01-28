@@ -1,0 +1,117 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.questao-container {
+  margin: 0px 10%;
+}
+
+.indicativo-questao {
+  width: 100%;
+  font-family: "Darker Grotesque", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.questao-texto {
+  width: 100%;
+  font-family: "Roboto Flex", serif;
+  font-optical-sizing: auto;
+  font-size: 24px;
+}
+
+::ng-deep .questao-texto img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.item-texto {
+  width: 100%;
+  font-family: "Darker Grotesque", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.question-items {
+  margin-top: 3%;
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+
+    .item-botao {
+      background-color: white;
+      font-family: "Darker Grotesque", serif;
+      font-size: 20px;
+      color: #0E1726;
+      padding-left: 16px;
+      border: solid 1px #0E1726;
+      border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      .bolinha {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #0E1726;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+        margin-right: 20px;
+
+        &.checked {
+          background-color: #3179FF;
+        }
+      }
+    }
+
+    &.marcado .item-botao {
+      background-color: #CADCFF;
+      font-weight: bold;
+      border: solid 1px #3179FF;
+    }
+  }
+}
+
+.barra-progresso {
+  width: 100%;
+  font-family: "Darker Grotesque", serif;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.numero-questao {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 10px;
+  background-color: #D2D5D9;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #40B600;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}

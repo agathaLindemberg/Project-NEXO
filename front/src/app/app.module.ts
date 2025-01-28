@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
+import { DesafioDiarioComponent } from './desafio-diario/desafio-diario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CadastroComponent,
-    HomeComponent
+    HomeComponent,
+    DesafioDiarioComponent
   ],
   imports: [
     BrowserModule,

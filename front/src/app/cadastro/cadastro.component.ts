@@ -17,7 +17,7 @@ export class CadastroComponent {
 
   onSubmit(cadastroForm: any) {
     const { nome, email, senha, confirmarSenha } = cadastroForm.value;
-    const usuario: Usuario = { nome, email, senha, qtd_moedas: 0 };
+    const usuario: Usuario = { nome, email, senha, qtd_moedas: 0, qtd_pulos: 0 , qtd_lixeira: 0 , qtd_dicas: 0 };
 
     if (senha == confirmarSenha) {
       this.usuarioService.save(usuario).subscribe(

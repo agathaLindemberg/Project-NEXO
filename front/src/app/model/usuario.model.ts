@@ -4,6 +4,9 @@ export interface Usuario {
   email: string;
   senha: string;
   qtd_moedas: number;
+  qtd_dicas: number;
+  qtd_pulos: number;
+  qtd_lixeira: number;
   desafio_completo?: boolean;
 
   qtd_acertos_matematica?: number;

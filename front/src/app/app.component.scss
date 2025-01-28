@@ -1,14 +1,36 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    box-sizing: inherit;
 }
 
-header {
+.container-dinamico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1E2A40;
+    width: 100%;
+    height: 100%;
+    padding: 5px 16px;
+    box-sizing: border-box;
+    font-family: Darker Grotesque;
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+    text-decoration-skip-ink: none;
+    color: white;
+}
+
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
-    border-bottom: solid 1px #333;
+    border-bottom: solid 1px #D3D3D3;
     width: 100%;
     box-sizing: border-box;
 
@@ -27,10 +49,13 @@ header {
             text-align: center;
 
             h1 {
-                font-family: "Darker Grotesque", serif;
-                font-optical-sizing: auto;
-                font-weight: bold;
-                font-style: normal;
+                font-family: Darker Grotesque;
+                font-size: 34.76px;
+                font-weight: 900;
+                line-height: 47.14px;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
                 margin: 0;
                 font-size: 42px;
                 color: #333;
@@ -44,22 +69,26 @@ header {
     }
 
     img {
-        height: 50px;
-        width: 50px;
+        height: 17px;
+        width: 17px;
         border-radius: 30px;
     }
 
     .informacoes-usuario {
         display: flex;
         align-items: center;
-        margin: 0px 16px;
-        border: 1px solid #333;
+        border: 1px solid #D2D5D9;
         border-radius: 30px;
-    
+
         p {
-            margin: 0 0 0 8px;
+            margin-left: 10%;
+            font-family: Darker Grotesque;
             font-size: 1rem;
-            color: #333;
+            font-weight: 900;
+            text-align: center;
+            text-decoration-skip-ink: none;
+            font-size: 17px;
+            color: #1E2A40;
         }
     }
 }

@@ -23,7 +23,10 @@ export class AppComponent implements OnInit {
         nome: 'hrhehherh',
         email: 'oii',
         senha: 'teste',
-        qtd_moedas: 0
+        qtd_moedas: 0,
+        qtd_dicas: 0,
+        qtd_lixeira: 0,
+        qtd_pulos: 0
       };
     }
 

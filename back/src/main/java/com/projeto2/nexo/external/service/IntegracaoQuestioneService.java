@@ -87,17 +87,8 @@ public class IntegracaoQuestioneService {
 
     private List<QuestaoDTO> jsonParaQuestaoDTO(String json) {
         try {
-            Type listType = new TypeToken<List<QuestaoDTO>>() {}.getType();
-            return gson.fromJson(json, listType);
+            return mapper.readValue(json, new TypeReference<>() {});
         } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String parametrosParaJson(RequestParametrosDTO requestParametrosDTO) {
-        try {
-            return mapper.writeValueAsString(requestParametrosDTO);
-        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }

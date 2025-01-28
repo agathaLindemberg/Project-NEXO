@@ -31,6 +31,9 @@ public class Usuario {
     private String senha;
 
     private Integer qtd_moedas;
+    private Integer qtd_dicas;
+    private Integer qtd_pulos;
+    private Integer qtd_lixeira;
     private Boolean desafio_completo;
 
     private Integer qtd_acertos_matematica;
