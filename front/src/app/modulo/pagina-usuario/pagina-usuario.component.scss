@@ -1,0 +1,189 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Darker Grotesque", sans-serif;
+    background-color: #F7FAFF;
+}
+
+.container-total {
+    padding: 0px 10%;
+    padding-bottom: 18vh;
+    background-color: #F7FAFF;
+}
+
+.container {
+    width: 100%;
+    padding-bottom: 18vh;
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    padding: 10vh 0;
+    gap: 20px;
+}
+
+.perfil-imagem img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 1px solid #959BA6;
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.perfil-info h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.perfil-info button {
+    background-color: #2F7BF5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 19px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.perfil-info button:hover {
+    background-color: #2767ce;
+}
+
+h3 {
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+h3:hover {
+    color: #3179FF;
+    cursor: pointer;
+}
+
+.menu {
+    border-bottom: 1px solid #898a8d;
+}
+
+.numero-questao {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+div:last-of-type p:last-child {
+    color: #2F7BF5;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div:last-of-type p:last-child:hover {
+    text-decoration: underline;
+}
+
+button {
+    font-family: "Darker Grotesque", sans-serif;
+    width: 100%;
+    background: white;
+    border: 1px solid #898a8d;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+button::after {
+    content: "➜";
+}
+
+button:hover {
+    background: rgb(233, 232, 232);
+}
+
+.legenda {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    padding: 30px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.legenda p {
+    padding-bottom: 20px;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+}
+
+.legenda-descricoes {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    padding: 30px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.legenda-descricoes h4 {
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 2px solid #ddd;
+}
+
+.legenda-descricoes p {
+    padding-top: 20px;
+    font-size: 16px;
+}
+
+.barra-progresso {
+    width: 40%;
+    font-family: "Darker Grotesque", serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.numero-questao {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #D2D5D9;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #40B600;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}

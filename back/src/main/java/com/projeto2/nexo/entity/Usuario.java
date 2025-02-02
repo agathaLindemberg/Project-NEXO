@@ -24,9 +24,6 @@ public class Usuario {
     @Column(nullable = false, length = 100)
     private String email;
 
-    @Column(nullable = false, length = 50)
-    private String login;
-
     @Column(nullable = false, length = 100)
     private String senha;
 

@@ -2,7 +2,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { QuestaoDiaria } from "../model/questao-diaria.model";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 import { QuestaoRequestDTO } from "./dto/questao-request.dto";
 import { QuestaoResponseDTO } from "./dto/questao-response.dto";
 
@@ -14,7 +13,12 @@ export class QuestaoDiariaService {
 
     constructor(private http: HttpClient) { }
 
-    resgatarQuestaoUsuario(desempenhoUsuario: QuestaoRequestDTO): Observable<QuestaoResponseDTO> {       
+    resgatarQuestaoUsuario(desempenhoUsuario: QuestaoRequestDTO): Observable<QuestaoResponseDTO> {
         return this.http.post<QuestaoResponseDTO>(`${this.apiUrl}`, desempenhoUsuario);
-      }
+    }
+
+    getByIdIn(ids: number[]): Observable<QuestaoDiaria[]> {
+        return this.http.get<QuestaoDiaria[]>(`${this.apiUrl}/listar?ids=${ids.join(',')}`);
+    }
+
 }

@@ -1,30 +1,44 @@
 <header>
-    <div class="container-dinamico">
-        <div>
-            <p>Sobre</p>
+    <ng-container *ngIf="usuario">
+        <div class="container-dinamico" *ngIf="isExpanded">
+            <div>
+                <p (click)="goSobre()">Sobre</p>
+            </div>
+            <div>
+                <p (click)="goPerfil()">Perfil</p>
+            </div>
+            <div>
+                <p>Acessibilidade</p>
+            </div>
         </div>
-        <div>
-            <p>Perfil</p>
+    </ng-container>
+    <ng-container *ngIf="!usuario">
+        <div class="container-buttons" *ngIf="isExpanded">
+            <button class="login-button" (click)="goLogin()">Login</button>
+            <button class="cadastro-button" (click)="goCadastro()">Cadastro</button>
         </div>
-        <div>
-            <p>Acessibilidade</p>
-        </div>
-    </div>
+    </ng-container>
 
     <div class="container">
         <div>
-            <ng-container *ngIf="router.url !== '/' && router.url !== '/login' && router.url !== '/cadastro'">
-                <div class="informacoes-usuario">
-                    <img src="assets/imagens/icone-dinheiro.jpg" alt="Ícone Dinheiro">
-                    <p>{{ usuario?.qtd_moedas }}</p>
-                </div>
+            <ng-container *ngIf="router.url !== '/login' && router.url !== '/cadastro'">
+                <ng-container *ngIf="usuario">
+                    <div class="informacoes-usuario">
+                        <img src="assets/imagens/icone-dinheiro.png" alt="Ícone Dinheiro">
+                        <p>{{ usuario?.qtd_moedas }}</p>
+                    </div>
+                </ng-container>
             </ng-container>
         </div>
+
         <div class="nome-projeto">
-            <h1>Nexo</h1>
+            <h1 (click)="goHome()">Nexo</h1>
         </div>
+
         <div>
-            <p>^</p>
+            <mat-icon (click)="toggleExpansion()">
+                {{ isExpanded ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
         </div>
     </div>
 </header>

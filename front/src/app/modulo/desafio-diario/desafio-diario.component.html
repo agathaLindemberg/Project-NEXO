@@ -1,0 +1,43 @@
+<div *ngIf="questaoDiaria" class="questao-container">
+    <div class="barra-progresso">
+        <span class="numero-questao">QUESTÃO {{ currentQuestion }}</span>
+        <div class="progress-bar">
+            <div class="progress" [style.width.%]="(currentQuestion / 10) * 100"></div>
+        </div>
+    </div>
+
+    <div class="indicativo-questao">
+        <p>Questão ENEM | {{ questaoDiaria.year }} - {{ areaConhecimento }} </p>
+    </div>
+
+    <div class="questao-texto" [innerHTML]="questaoDiaria.baseText"></div>
+    <div class="questao-texto" [innerHTML]="questaoDiaria.stem"></div>
+
+    <ul class="question-items">
+        <li *ngFor="let item of questionItems; let i = index" [class.marcado]="i === selectedIndex">
+            <button class="item-botao" (click)="markItem(i)">
+                <span class="bolinha" [class.checked]="i === selectedIndex"></span>
+                <span>{{ getLetter(i) }}</span>
+                <div [innerHTML]="item.description"></div>
+            </button>
+        </li>
+    </ul>
+</div>
+
+<div class="footer-container">
+    <div class="footer-left">
+        <ng-container *ngIf=usuario>
+            <div class="dica">
+                <img src="assets/imagens/icone-dica.png" alt="Ícone Dicas">
+                <p>{{ usuario?.qtd_dicas }}</p>
+            </div>
+            <div class="pulo">
+                <img src="assets/imagens/icone-skip.png" alt="Ícone Pular Questão">
+                <p>{{ usuario?.qtd_pulos }}</p>
+            </div>
+        </ng-container>
+    </div>
+    <div class="footer-right">
+        <button class="confirmar-botao" (click)="confirmarResposta()">Confirmar</button>
+    </div>
+</div>

@@ -15,7 +15,7 @@ html {
     background-color: #1E2A40;
     width: 100%;
     height: 100%;
-    padding: 5px 16px;
+    padding: 20px 50px 10px 50px;
     box-sizing: border-box;
     font-family: Darker Grotesque;
     font-size: 1rem;
@@ -25,11 +25,15 @@ html {
     color: white;
 }
 
+.container-dinamico p {
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 30px;
     border-bottom: solid 1px #D3D3D3;
     width: 100%;
     box-sizing: border-box;
@@ -73,22 +77,92 @@ html {
         width: 17px;
         border-radius: 30px;
     }
+}
 
-    .informacoes-usuario {
-        display: flex;
-        align-items: center;
-        border: 1px solid #D2D5D9;
-        border-radius: 30px;
+.informacoes-usuario{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #D2D5D9;
+  border-radius: 30px;
+  padding: 8px 25px;
+  min-width: 20px;
+  height: auto;
+}
 
-        p {
-            margin-left: 10%;
-            font-family: Darker Grotesque;
-            font-size: 1rem;
-            font-weight: 900;
-            text-align: center;
-            text-decoration-skip-ink: none;
-            font-size: 17px;
-            color: #1E2A40;
-        }
-    }
+.informacoes-usuario img {
+  width: 24px;
+  height: 24px;
+}
+
+.informacoes-usuario p {
+  margin: 0;
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  color: #1E2A40;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nome-projeto h1 {
+    cursor: pointer;
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+.container-buttons {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #1E2A40;
+    width: 100%;
+    height: 10%;
+    padding: 20px 0px;
+}
+
+.login-button {
+    width: 85px;
+    height: 34px;
+    padding: 0px 15px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    font-family: Darker Grotesque;
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: center;
+    text-decoration-skip-ink: none;
+    font-size: 17px;
+    text-decoration: underline;
+    margin-right: 20px;
+}
+
+.login-button:hover {
+    background-color: #e2e2e2;
+}
+
+.cadastro-button {
+    background: none;
+    color: white;
+    font-family: Darker Grotesque;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration-skip-ink: none;
+    font-size: 17px;
+    text-decoration: underline;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 50px;
+}
+
+.cadastro-button:hover {
+    color: #ccc;
 }

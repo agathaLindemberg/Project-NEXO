@@ -16,9 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -78,78 +76,70 @@ public class QuestaoDiariaService {
     }
 
     public QuestaoResponseDTO escolherProximaQuestao(QuestaoRequestDTO desempenhoUsuario) {
-        int totalQuestoes =
-                desempenhoUsuario.getQtd_questoes_linguagens_codigos() +
-                        desempenhoUsuario.getQtd_questoes_matematica() +
-                        desempenhoUsuario.getQtd_questoes_ciencias_natureza() +
-                        desempenhoUsuario.getQtd_questoes_ciencias_humana();
+        List<Integer> idsRespondidos = desempenhoUsuario.getIds_questoes_respondidas();
 
-        if (totalQuestoes == 0) {
-            List<QuestaoDiaria> questoes = repository.findByDifficultyAndFkCourseId(
-                    ConstDificuldade.FACIL, ConstAreaConhecimento.LINGUAGENS_CODIGOS);
-            if (!questoes.isEmpty()) {
-                List<ItemQuestaoDiaria> itens = itemQuestaoDiariaRepository.findByQuestaoDiariaId(questoes.get(0).getId());
-                QuestaoResponseDTO questaoResponseDTO = new QuestaoResponseDTO();
-                questaoResponseDTO.setQuestaoDiaria(questoes.get(0));
-                questaoResponseDTO.setItemQuestaoDiariaList(itens);
-                return questaoResponseDTO;
-            }
+
+        List<QuestaoDiaria> questoes = repository.findByDifficultyNotInIds(
+                definirDificuldade(desempenhoUsuario),
+                idsRespondidos == null ? Collections.singletonList(0) : idsRespondidos
+        );
+
+        if (!questoes.isEmpty()) {
+            Random rand = new Random();
+            QuestaoDiaria questaoEscolhida = questoes.get(rand.nextInt(questoes.size()));
+            List<ItemQuestaoDiaria> itens = itemQuestaoDiariaRepository.findByQuestaoDiariaId(questaoEscolhida.getId());
+
+            QuestaoResponseDTO questaoResponseDTO = new QuestaoResponseDTO();
+            questaoResponseDTO.setQuestaoDiaria(questaoEscolhida);
+            questaoResponseDTO.setItemQuestaoDiariaList(itens);
+            return questaoResponseDTO;
+        } else {
+            throw new IllegalStateException("Não foram encontradas questões.");
         }
-
-        if (totalQuestoes < 10) {
-            List<QuestaoDiaria> questoes;
-            int index = totalQuestoes;
-
-            if (desempenhoUsuario.getQtd_questoes_linguagens_codigos() == 0) {
-                questoes = repository.findByDifficultyAndFkCourseId(
-                        definirDificuldade(desempenhoUsuario), ConstAreaConhecimento.LINGUAGENS_CODIGOS);
-            } else if (desempenhoUsuario.getQtd_questoes_matematica() == 0) {
-                questoes = repository.findByDifficultyAndFkCourseId(
-                        definirDificuldade(desempenhoUsuario), ConstAreaConhecimento.MATEMATICA);
-            } else if (desempenhoUsuario.getQtd_questoes_ciencias_natureza() == 0) {
-                questoes = repository.findByDifficultyAndFkCourseId(
-                        definirDificuldade(desempenhoUsuario), ConstAreaConhecimento.CIENCIAS_NATUREZA);
-            } else if (desempenhoUsuario.getQtd_questoes_ciencias_humana() == 0) {
-                questoes = repository.findByDifficultyAndFkCourseId(
-                        definirDificuldade(desempenhoUsuario), ConstAreaConhecimento.CIENCIAS_HUMANA);
-            } else {
-                throw new IllegalStateException("Todas as áreas já possuem questões.");
-            }
-
-            if (questoes.isEmpty()) {
-                return null;
-            } else {
-                List<ItemQuestaoDiaria> itens = itemQuestaoDiariaRepository.findByQuestaoDiariaId(
-                        questoes.get(Math.min(index, questoes.size() - 1)).getId());
-                QuestaoResponseDTO questaoResponseDTO = new QuestaoResponseDTO();
-                questaoResponseDTO.setQuestaoDiaria(questoes.get(Math.min(index, questoes.size() - 1)));
-                questaoResponseDTO.setItemQuestaoDiariaList(itens);
-                return questaoResponseDTO;
-            }
-        }
-
-        throw new IllegalStateException("Todas as áreas já possuem questões.");
     }
 
+    public List<QuestaoDiaria> findByIdIn(List<Integer> ids) {
+        return repository.findByIdIn(ids);
+    }
 
     private Integer definirDificuldade(QuestaoRequestDTO desempenhoUsuario) {
-        if (desempenhoUsuario.getQtd_questoes_facil() >= 3 &&
-                desempenhoUsuario.getQtd_acertos_facil() >= 3) {
-            return ConstDificuldade.MEDIO;
-        }
+        List<Integer> idsRespondidos = desempenhoUsuario.getIds_questoes_respondidas();
 
-        if (desempenhoUsuario.getQtd_questoes_medio() >= 2 &&
-                desempenhoUsuario.getQtd_acertos_media() >= 2) {
-            return ConstDificuldade.DIFICIL;
-        } else if (desempenhoUsuario.getQtd_questoes_medio() >= 2) {
+        if (idsRespondidos == null || idsRespondidos.size() < 3) {
             return ConstDificuldade.FACIL;
         }
 
-        if (desempenhoUsuario.getQtd_questoes_dificil() >= 2 &&
-                desempenhoUsuario.getQtd_acertos_dificil() < 2) {
+        List<QuestaoDiaria> ultimasQuestoes = findByIdIn(
+                idsRespondidos.subList(Math.max(0, idsRespondidos.size() - 3), idsRespondidos.size())
+        );
+
+        int qtdFacil = 0, qtdMedio = 0, qtdDificil = 0;
+        int acertosFacil = 0, acertosMedio = 0, acertosDificil = 0;
+
+        for (QuestaoDiaria questao : ultimasQuestoes) {
+            if (Objects.equals(questao.getDifficulty(), ConstDificuldade.FACIL)) {
+                qtdFacil++;
+                if (desempenhoUsuario.getQtd_acertos_facil() > 0) acertosFacil++;
+            } else if (Objects.equals(questao.getDifficulty(), ConstDificuldade.MEDIO)) {
+                qtdMedio++;
+                if (desempenhoUsuario.getQtd_acertos_media() > 0) acertosMedio++;
+            } else if (Objects.equals(questao.getDifficulty(), ConstDificuldade.DIFICIL)) {
+                qtdDificil++;
+                if (desempenhoUsuario.getQtd_acertos_dificil() > 0) acertosDificil++;
+            }
+        }
+
+        if (qtdFacil >= 3 && acertosFacil >= 3) {
+            return ConstDificuldade.MEDIO;
+        }
+        if (qtdMedio >= 2 && acertosMedio >= 2) {
+            return ConstDificuldade.DIFICIL;
+        }
+        if (qtdDificil >= 2 && acertosDificil < 2) {
             return ConstDificuldade.MEDIO;
         }
 
         return ConstDificuldade.FACIL;
     }
+
 }

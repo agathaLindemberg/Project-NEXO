@@ -1,0 +1,84 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    font-family: "Darker Grotesque", serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+header img {
+    width: 70px;
+    height: 72px;
+    margin: 0;
+}
+
+header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 50px;
+    margin: 0;
+}
+
+header h4 {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 28px;
+    text-align: center;
+    padding: 0 15%;
+    margin: 0;
+}
+
+button {
+    background-color: white;
+    font-family: "Darker Grotesque";
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: solid 1px #0E1726;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button[routerLink="/desafio-diario"] {
+    background-color: #3179FF;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+button[routerLink="/desafio-diario"]:hover {
+    background-color: #265ecf;
+    color: white;
+}
+
+img {
+    width: 70px;
+    height: 72px;
+}

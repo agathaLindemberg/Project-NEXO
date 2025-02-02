@@ -1,0 +1,105 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    padding-bottom: 18vh;
+    font-family: "Roboto Flex", serif;
+    font-optical-sizing: auto;
+    line-height: normal;
+}
+
+p,
+ol,
+ul {
+    font-size: 20px;
+}
+
+h3 {
+    padding: 10px 0px;
+    font-size: 25px;
+}
+
+li {
+    padding: 10px 0;
+}
+
+#volte-amanha {
+    font-style: italic;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #2761CC;
+    font-weight: 700;
+}
+
+.container {
+    margin: 2% 10%;
+    padding: 5%;
+    border: 1px solid #959BA6;
+    background-color: #F7FAFF;
+    border-radius: 20px;
+}
+
+.container-botoes {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 15px;
+    width: 40%;
+    margin: 15px 0;
+}
+
+.dica,
+.pulo,
+.informacoes-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #D2D5D9;
+    border-radius: 30px;
+    padding: 8px 25px;
+    min-width: 10%;
+    height: auto;
+}
+
+.dica img {
+    width: 16px;
+    height: 24px;
+}
+
+.pulo img {
+    width: 18px;
+    height: 15px;
+}
+
+.dica p,
+.pulo p,
+.informacoes-usuario p {
+    margin: 0;
+    font-family: "Darker Grotesque", sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+    color: #1E2A40;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.informacoes-usuario img {
+    width: 24px;
+    height: 24px;
+    border-radius: 30px;
+}
+
+.btn-fechar {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background: none;
+    color: inherit;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    padding: 5px;
+}

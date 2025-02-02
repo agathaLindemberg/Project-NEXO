@@ -2,17 +2,13 @@ package com.projeto2.nexo.rest.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Setter
 @Getter
 public class QuestaoRequestDTO {
-    private int qtd_questoes_linguagens_codigos;
-    private int qtd_questoes_matematica;
-    private int qtd_questoes_ciencias_natureza;
-    private int qtd_questoes_ciencias_humana;
-    private int qtd_questoes_facil;
+    private List<Integer> ids_questoes_respondidas;
     private int qtd_acertos_facil;
-    private int qtd_questoes_medio;
     private int qtd_acertos_media;
-    private int qtd_questoes_dificil;
     private int qtd_acertos_dificil;
 }

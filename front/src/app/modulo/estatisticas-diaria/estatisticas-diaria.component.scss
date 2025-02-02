@@ -1,0 +1,120 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    margin: 2% 10%;
+    padding-bottom: 18vh;
+    font-family: Darker Grotesque;
+    text-decoration-skip-ink: none;
+}
+
+h3,
+h4 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    color: #454C59;
+}
+
+p {
+    margin: 2% 0;
+    font-weight: 500;
+    font-size: 22px;
+    width: 70%;
+    color: #454C59;
+}
+
+.legenda {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 60px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.legenda h3 {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 37.97px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.legenda-itens {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 10px;
+    width: 50%;
+}
+
+.legenda-itens div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legenda img {
+    border-radius: 5px;
+    width: 27px;
+    height: 27px;
+}
+
+.legenda span {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.estatisticas {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.grafico {
+    width: 50%;
+}
+
+.progresso {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding-left: 40px;
+  }
+  
+  .item-progresso {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .texto {
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 1.5rem;
+    padding-right: 90px;
+    text-align: center;
+  }
+  
+  .texto strong {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  
+  .imagem img {
+    width: auto;
+    height: 50px;
+  }
+  

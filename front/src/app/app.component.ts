@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './model/usuario.model';
 import { Router } from '@angular/router';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -9,28 +10,40 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   usuario: Usuario | null = null;
+  isExpanded = false;
 
-  constructor(public router: Router) {}
+  constructor(
+    public usuarioService: UsuarioService,
+    public router: Router
+  ) { }
 
-  ngOnInit(): void {   
-    this.getDetailsUsuario();
+  ngOnInit(): void {
+    this.usuarioService.getUsuarioObservable().subscribe((user) => {
+      this.usuario = user;
+    });
   }
 
-
-  getDetailsUsuario() {
-    if (this.usuario == null) {
-      this.usuario = {
-        nome: 'hrhehherh',
-        email: 'oii',
-        senha: 'teste',
-        qtd_moedas: 0,
-        qtd_dicas: 0,
-        qtd_lixeira: 0,
-        qtd_pulos: 0
-      };
-    }
-
-    this.usuario.qtd_moedas = 2;
+  toggleExpansion() {
+    this.isExpanded = !this.isExpanded;
   }
 
+  goHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  goLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  goCadastro() {
+    this.router.navigate(['/cadastro']);
+  }
+
+  goSobre(): void {
+    this.router.navigate(['/sobre']);
+  }
+
+  goPerfil(): void {
+    this.router.navigate(['/perfil']);
+  }
 }

@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/questao-diaria")
 @CrossOrigin("http://localhost:4200")
@@ -26,5 +28,10 @@ public class QuestaoDiariaResource {
     public ResponseEntity<QuestaoResponseDTO> resgatarQuestaoUsuario(@RequestBody QuestaoRequestDTO desempenhoUsuario) {
         QuestaoResponseDTO questaoDiaria = service.escolherProximaQuestao(desempenhoUsuario);
         return ResponseEntity.ok(questaoDiaria);
+    }
+
+    @GetMapping("/listar")
+    public List<QuestaoDiaria> getByIds(@RequestParam List<Integer> ids) {
+        return service.findByIdIn(ids);
     }
 }
