@@ -12,10 +12,8 @@ html {
 
 .indicativo-questao {
   width: 100%;
-  font-family: "Darker Grotesque", serif;
   font-optical-sizing: auto;
   font-weight: 900;
-  font-size: 24px;
   margin: 50px 0;
 }
 
@@ -40,8 +38,8 @@ html {
   font-family: "Darker Grotesque", serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 24px;
 }
+
 .question-items {
   list-style: none;
   padding: 0;
@@ -52,7 +50,6 @@ html {
     .item-botao {
       background-color: white;
       font-family: "Darker Grotesque", serif;
-      font-size: 20px;
       color: #0E1726;
       padding-left: 16px;
       border: solid 1px #0E1726;
@@ -86,13 +83,29 @@ html {
       font-weight: bold;
       border: solid 1px #3179FF;
     }
+
+    &.correto .item-botao {
+      background-color: #a1e6a4;
+      border: solid 1px #4CAF50;
+    }
+
+    &.incorreto .item-botao {
+      background-color: #ec9a9a;
+      border: solid 1px #FF5252;
+    }
+
+    &.disabled .item-botao {
+      background-color: #ec9a9a;
+      border: solid 1px #FF5252;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
   }
 }
 
 .barra-progresso {
   width: 100%;
   font-family: "Darker Grotesque", serif;
-  font-size: 24px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -140,22 +153,28 @@ html {
   font-family: "Darker Grotesque", serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: 20px;
   color: #666;
+}
+
+.resultado h1{
+  margin: 0;
+  font-weight: 900;
+  color: #1E2A40;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .footer-right {
   display: flex;
   padding: 2% 10%;
   gap: 15px;
-  font-family: "Darker Grotesque", serif;
   font-optical-sizing: auto;
   font-weight: 900;
-  font-size: 43px;
   color: #666;
 }
 
-.confirmar-botao {
+.confirmar-botao,
+.continuar-botao {
   background-color: #3179FF;
   color: white;
   width: 350px;
@@ -167,10 +186,10 @@ html {
   font-family: "Darker Grotesque", serif;
   font-optical-sizing: auto;
   font-weight: 900;
-  font-size: 32px;
 }
 
-.confirmar-botao:hover {
+.confirmar-botao:hover,
+.continuar-botao:hover {
   background-color: #245bc0;
 }
 
@@ -201,7 +220,6 @@ html {
 .pulo p {
   margin: 0;
   font-family: "Darker Grotesque", sans-serif;
-  font-size: 17px;
   font-weight: 900;
   color: #1E2A40;
   text-align: center;

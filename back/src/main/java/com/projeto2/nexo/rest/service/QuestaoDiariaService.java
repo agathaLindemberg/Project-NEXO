@@ -142,4 +142,25 @@ public class QuestaoDiariaService {
         return ConstDificuldade.FACIL;
     }
 
+    public QuestaoResponseDTO escolherProximaQuestaoPorArea(QuestaoRequestDTO desempenhoUsuario, Integer area) {
+        List<Integer> idsRespondidos = desempenhoUsuario.getIds_questoes_respondidas();
+
+        List<QuestaoDiaria> questoes = repository.findByFkCourseIdNotInIds(
+                area, idsRespondidos == null ? Collections.singletonList(0) : idsRespondidos
+        );
+
+        if (!questoes.isEmpty()) {
+            Random rand = new Random();
+            QuestaoDiaria questaoEscolhida = questoes.get(rand.nextInt(questoes.size()));
+            List<ItemQuestaoDiaria> itens = itemQuestaoDiariaRepository.findByQuestaoDiariaId(questaoEscolhida.getId());
+
+            QuestaoResponseDTO questaoResponseDTO = new QuestaoResponseDTO();
+            questaoResponseDTO.setQuestaoDiaria(questaoEscolhida);
+            questaoResponseDTO.setItemQuestaoDiariaList(itens);
+            return questaoResponseDTO;
+        } else {
+            throw new IllegalStateException("Não foram encontradas questões.");
+        }
+
+    }
 }

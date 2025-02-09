@@ -18,7 +18,6 @@ html {
     padding: 20px 50px 10px 50px;
     box-sizing: border-box;
     font-family: Darker Grotesque;
-    font-size: 1rem;
     font-weight: 900;
     text-align: center;
     text-decoration-skip-ink: none;
@@ -54,14 +53,13 @@ html {
 
             h1 {
                 font-family: Darker Grotesque;
-                font-size: 34.76px;
                 font-weight: 900;
+                font-size: 46px;
                 line-height: 47.14px;
                 text-align: center;
                 text-underline-position: from-font;
                 text-decoration-skip-ink: none;
                 margin: 0;
-                font-size: 42px;
                 color: #333;
             }
         }
@@ -99,7 +97,6 @@ html {
 .informacoes-usuario p {
   margin: 0;
   font-family: "Darker Grotesque", sans-serif;
-  font-size: 17px;
   font-weight: 900;
   color: #1E2A40;
   text-align: center;
@@ -134,11 +131,9 @@ mat-icon {
     cursor: pointer;
     opacity: 0.9;
     font-family: Darker Grotesque;
-    font-size: 1rem;
     font-weight: 900;
     text-align: center;
     text-decoration-skip-ink: none;
-    font-size: 17px;
     text-decoration: underline;
     margin-right: 20px;
 }
@@ -151,11 +146,9 @@ mat-icon {
     background: none;
     color: white;
     font-family: Darker Grotesque;
-    font-size: 1rem;
     font-weight: 700;
     text-align: center;
     text-decoration-skip-ink: none;
-    font-size: 17px;
     text-decoration: underline;
     border: none;
     text-decoration: underline;

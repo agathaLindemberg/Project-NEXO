@@ -89,7 +89,7 @@ export class EstatisticasDiariaComponent implements OnInit {
       ? ((progresso.ids_questoes_acertadas.length / progresso.ids_questoes_respondidas.length) * 100).toFixed(0) + "%"
       : "0%";
     this.tempoMedio = progresso.tempoMedio;
-    this.acertosSeguidos = '2';
+    this.acertosSeguidos = progresso.maiorSequenciaAcertos;
 
     this.initChart()
   }

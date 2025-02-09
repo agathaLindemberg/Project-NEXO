@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './modulo/login/login.component';
 import { CadastroComponent } from './modulo/cadastro/cadastro.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,6 +16,9 @@ import { SobreComponent } from './modulo/sobre/sobre.component';
 import { EstatisticasDiariaComponent } from './modulo/estatisticas-diaria/estatisticas-diaria.component';
 import { ChartModule } from 'primeng/chart';
 import { PaginaUsuarioComponent } from './modulo/pagina-usuario/pagina-usuario.component';
+import { PerfilComponent } from './modulo/pagina-usuario/perfil/perfil.component';
+import { EstatisticasUsuarioComponent } from './modulo/pagina-usuario/estatisticas-usuario/estatisticas-usuario.component';
+import { EscolherAreasConhecimentoComponent } from './modulo/escolher-areas-conhecimento/escolher-areas-conhecimento.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { PaginaUsuarioComponent } from './modulo/pagina-usuario/pagina-usuario.c
     DesafioDiarioComponent,
     SobreComponent,
     EstatisticasDiariaComponent,
-    PaginaUsuarioComponent
+    PaginaUsuarioComponent,
+    PerfilComponent,
+    EstatisticasUsuarioComponent,
+    EscolherAreasConhecimentoComponent
   ],
   imports: [
     ChartModule,
@@ -39,7 +45,7 @@ import { PaginaUsuarioComponent } from './modulo/pagina-usuario/pagina-usuario.c
     FormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

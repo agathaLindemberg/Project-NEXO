@@ -1,0 +1,47 @@
+<div class="legenda" *ngIf="currentQuestion && currentQuestion !== 0">
+    <p *ngIf="currentQuestion < 10">Você está quase terminando o desafio de hoje! Vamos lá</p>
+    <p *ngIf="currentQuestion === 10">Você já terminou seu desafio diário! Parabéns!</p>
+    <div class="barra-progresso">
+        <span class="numero-questao">QUESTÃO {{ currentQuestion }}</span>
+        <div class="progress-bar">
+            <div class="progress" [style.width.%]="(currentQuestion / 10) * 100"></div>
+        </div>
+    </div>
+</div>
+
+<div class="legenda-descricoes">
+    <h4>Seus pontos fortes estão aqui!</h4>
+    <p>Veja quais suas melhores áreas de conhecimento e quais você pode melhorar!</p>
+    <p class="especial" (click)="verEstatisticas()">Estatísticas de Jogos Anteriores</p>
+</div>
+
+<div class="acoes">
+    <div class="informacoes-usuario">
+        <img src="assets/imagens/icone-dinheiro.png" alt="Ícone Dinheiro">
+        <p class="acoes-normais">{{ usuario?.qtd_moedas }}</p>
+    </div>
+    
+    <div class="dica">
+        <img src="assets/imagens/icone-dica.png" alt="Ícone Dicas">
+        <p class="acoes-normais">{{ usuario?.qtd_dicas }}</p>
+    </div>
+
+    <div class="pulo">
+        <img src="assets/imagens/icone-skip.png" alt="Ícone Pular Questão">
+        <p class="acoes-normais">{{ usuario?.qtd_pulos }}</p>
+    </div>
+</div>
+
+<div class="acoes">
+    <div class="comprar-dica" (click)="comprarDica()">
+        <img src="assets/imagens/icone-dica.png" alt="Ícone Comprar Dicas">
+        <p>Comprar Dica</p>
+    </div>
+
+    <div class="comprar-pulo" (click)="comprarPulo()">
+        <img src="assets/imagens/icone-skip.png" alt="Ícone Comprar Pulos">
+        <p>Comprar Pulo</p>
+    </div>
+</div>
+
+<button type="submit" (click)="desconectar()">Desconectar</button>

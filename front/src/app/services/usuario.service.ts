@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Usuario } from 'src/app/model/usuario.model';
+import { EstatisticasUsuario } from '../model/estatistica-usuario';
+import { EstatisticasUsuarioDTO } from './dto/estatistica-usuario.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class UsuarioService {
   private readonly apiUrl = 'http://localhost:8080/api/usuario';
   private usuarioSubject = new BehaviorSubject<Usuario | null>(this.getUsuarioFromStorage());
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   save(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.apiUrl}`, usuario);
@@ -68,7 +70,7 @@ export class UsuarioService {
     return user ? JSON.parse(user) as Usuario : null;
   }
 
-  private setUsuario(usuario: Usuario) {
+  public setUsuario(usuario: Usuario) {
     localStorage.setItem('usuario', JSON.stringify(usuario));
     this.usuarioSubject.next(usuario);
   }

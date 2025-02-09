@@ -7,11 +7,16 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface QuestaoDiariaRepository extends JpaRepository<QuestaoDiaria, Integer>{
+public interface QuestaoDiariaRepository extends JpaRepository<QuestaoDiaria, Integer> {
     @Query("SELECT q FROM QuestaoDiaria q WHERE q.difficulty = :difficulty AND q.id NOT IN :idsRespondidos")
     List<QuestaoDiaria> findByDifficultyNotInIds(
             @Param("difficulty") Integer difficulty,
             @Param("idsRespondidos") List<Integer> idsRespondidos);
 
     List<QuestaoDiaria> findByIdIn(List<Integer> integers);
+
+    @Query("SELECT q FROM QuestaoDiaria q WHERE q.fkCourseId = :area AND q.id NOT IN :idsRespondidos")
+    List<QuestaoDiaria> findByFkCourseIdNotInIds(
+            @Param("area") Integer area,
+            @Param("idsRespondidos") List<Integer> integers);
 }

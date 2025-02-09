@@ -1,0 +1,216 @@
+.numero-questao {
+    margin-bottom: 5px;
+}
+
+.especial {
+    color: #2F7BF5;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.especial:hover {
+    text-decoration: underline;
+}
+
+button {
+    font-family: "Darker Grotesque", sans-serif;
+    width: 100%;
+    background: white;
+    border: 1px solid #898a8d;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+button::after {
+    content: "➜";
+}
+
+button:hover {
+    background: rgb(233, 232, 232);
+}
+
+.legenda {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    padding: 30px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.legenda p {
+    font-family: "Darker Grotesque", serif;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+.legenda-descricoes {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    padding: 30px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.legenda-descricoes h4 {
+    font-weight: 600;
+    font-size: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.legenda-descricoes p {
+    padding-top: 20px;
+}
+
+.barra-progresso {
+    width: 40%;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.numero-questao {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #D2D5D9;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #40B600;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dica,
+.pulo,
+.informacoes-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #D2D5D9;
+    background-color: white;
+    border-radius: 30px;
+    padding: 8px 25px;
+    min-width: 50px;
+    height: auto;
+    cursor: default;
+}
+
+.informacoes-usuario img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.dica img {
+    width: 16px;
+    height: 24px;
+}
+
+.pulo img {
+    width: 18px;
+    height: 15px;
+}
+
+.dica p,
+.pulo p,
+.informacoes-usuario p {
+    margin: 0;
+    font-family: "Darker Grotesque", sans-serif;
+    font-weight: 900;
+    color: #1E2A40;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dica p,
+.pulo p:hover,
+.informacoes-usuario p:hover {
+    margin: 0;
+    font-family: "Darker Grotesque", sans-serif;
+    font-weight: 900;
+    color: #1E2A40;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.acoes-normais {
+    margin: 0;
+    font-family: "Darker Grotesque", sans-serif;
+    font-weight: 900;
+    color: #1E2A40;
+    text-align: center;
+    white-space: nowrap;
+    cursor: default;
+}
+
+
+
+.comprar-dica,
+.comprar-pulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #D2D5D9;
+    background-color: white;
+    border-radius: 30px;
+    padding: 8px 25px;
+    min-width: 50px;
+    height: auto;
+    cursor: default;
+}
+
+.comprar-dica img {
+    width: 16px;
+    height: 24px;
+}
+
+.comprar-pulo img {
+    width: 18px;
+    height: 15px;
+}
+
+.comprar-dica p,
+.comprar-pulo p{
+    margin: 0;
+    font-family: "Darker Grotesque", sans-serif;
+    font-weight: 700;
+    color: #2F7BF5;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.comprar-dica p:hover,
+.comprar-pulo p:hover {
+    color: #3360af;
+    cursor: pointer;
+}

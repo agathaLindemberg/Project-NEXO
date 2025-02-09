@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestaoDiaria } from '../../model/questao-diaria.model';
 import { QuestaoRequestDTO } from '../../services/dto/questao-request.dto';
 import { QuestaoDiariaService } from '../../services/questao-diaria.service';
@@ -8,6 +8,8 @@ import { ConstAreaConhecimento } from '../../constantes/ConstAreaConhecimento';
 import { ConstDificuldade } from '../../constantes/ConstDificuldade';
 import { Usuario } from '../../model/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
+import { EstatisticasQuestaoUsuarioService } from 'src/app/services/estatistica-questao-usuario.service';
+import { EstatisticasQuestaoUsuarioRequestDTO } from 'src/app/services/dto/estatistica-questao-usuario-request.dto';
 
 @Component({
   selector: 'app-desafio-diario',
@@ -17,12 +19,17 @@ import { UsuarioService } from '../../services/usuario.service';
 export class DesafioDiarioComponent implements OnInit {
   questaoDiaria?: QuestaoDiaria;
   questionItems?: ItemQuestaoDiaria[];
-  areaConhecimento = 'Matemática';
+  areaConhecimento = '';
   currentQuestion: number = 0;
   idItemSelecionado: number = 0;
   usuario: Usuario = null;
   tempoInicioQuestao: number = 0;
   tempoPorQuestao: number[] = [];
+  respostaConfirmada: boolean = false;
+  acertou: boolean = false;
+  sequenciaAtualAcertos: number = 0;
+  maiorSequenciaAcertos: number = 0;
+  escolhaAreaConhecimento: number = 0;
 
   questaoDiariaDTO: QuestaoRequestDTO = {
     ids_questoes_respondidas: [],
@@ -37,10 +44,19 @@ export class DesafioDiarioComponent implements OnInit {
   constructor(
     private questaoDiariaService: QuestaoDiariaService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private estatisticaQuestaoUsuarioService: EstatisticasQuestaoUsuarioService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const areaSelecionada = params['area'];
+      if (areaSelecionada) {
+        this.escolhaAreaConhecimento = +areaSelecionada;
+      }
+    });
+
     this.carregarProgresso();
 
     if (!this.questaoDiaria || (this.questaoDiariaDTO.ids_questoes_respondidas.includes(this.questaoDiaria.id))) {
@@ -49,7 +65,6 @@ export class DesafioDiarioComponent implements OnInit {
 
     this.usuario = this.usuarioService.getUsuario();
   }
-
 
   getLetter(index: number): string {
     return String.fromCharCode(65 + index);
@@ -62,72 +77,6 @@ export class DesafioDiarioComponent implements OnInit {
     }
   }
 
-  exibirPopup(mensagem: string): void {
-    const popup = document.createElement('div');
-    popup.textContent = mensagem;
-    popup.style.position = 'fixed';
-    popup.style.top = '50%';
-    popup.style.left = '50%';
-    popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.background = '#ffffff';
-    popup.style.color = '#000';
-    popup.style.padding = '20px';
-    popup.style.borderRadius = '10px';
-    popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
-    popup.style.zIndex = '1000';
-    popup.style.fontSize = '18px';
-    popup.style.textAlign = 'center';
-
-    document.body.appendChild(popup);
-
-    setTimeout(() => {
-      document.body.removeChild(popup);
-    }, 1500);
-  }
-
-  carregarNovaQuestao(): void {
-    this.carregarProgresso();
-
-    if (this.questaoDiariaDTO.ids_questoes_respondidas.length === 10) {
-      this.exibirPopup('Você já realizou seu desafio diário.');
-      this.router.navigate(['/estatisticas-diaria']);
-      return;
-    }
-
-    this.selectedIndex = null;
-    this.questaoDiariaService.resgatarQuestaoUsuario(this.questaoDiariaDTO).subscribe({
-      next: (data) => {
-        if (!data || !data.questaoDiaria || !data.itemQuestaoDiariaList) {
-          console.warn('Dados da questão diária estão incompletos ou inválidos.');
-          this.exibirPopup('Não foi possível carregar a questão. Tente novamente.');
-          return;
-        }
-
-        this.questaoDiaria = data.questaoDiaria;
-        this.questionItems = data.itemQuestaoDiariaList.map(item => ({
-          ...item,
-          description: this.removerTagsHtml(item.description),
-        }));
-        this.areaConhecimento = ConstAreaConhecimento.getAreaConhecimento(data.questaoDiaria.fkCourseId);
-        this.currentQuestion++;
-
-        this.tempoInicioQuestao = Date.now();
-        this.salvarProgresso();
-      },
-      error: (err) => {
-        console.error('Erro ao carregar a questão diária:', err);
-        this.exibirPopup('Erro ao carregar a questão. Verifique sua conexão e tente novamente.');
-      },
-    });
-
-  }
-
-
-  removerTagsHtml(texto: string): string {
-    return texto.replace(/<\/?[^>]+(>|$)/g, "").trim();
-  }
-
-
   confirmarResposta(): void {
     if (!this.questionItems) return;
 
@@ -138,33 +87,50 @@ export class DesafioDiarioComponent implements OnInit {
       return;
     }
 
-    let acertou: boolean = false;
-    if (selectedItem.id === this.idItemSelecionado) {
-      acertou = true
+    this.acertou = selectedItem.id === this.idItemSelecionado;
+    if (this.acertou) {
       this.questaoDiariaDTO.ids_questoes_acertadas.push(this.questaoDiaria.id);
+      this.sequenciaAtualAcertos++;
+      this.maiorSequenciaAcertos = Math.max(this.maiorSequenciaAcertos, this.sequenciaAtualAcertos);
+
+      this.usuario.qtd_moedas += 2;
+      this.usuarioService.update(this.usuario).subscribe(() => {
+        this.usuarioService.setUsuario(this.usuario);
+      });
+    } else {
+      this.sequenciaAtualAcertos = 0;
+
+      this.usuario.qtd_moedas++;
+      this.usuarioService.update(this.usuario).subscribe(() => {
+        this.usuarioService.setUsuario(this.usuario);
+      });
     }
+
 
     if (this.questaoDiaria) {
       switch (this.questaoDiaria.difficulty) {
         case ConstDificuldade.FACIL:
-          if (acertou) this.questaoDiariaDTO.qtd_acertos_facil++;
+          if (this.acertou) this.questaoDiariaDTO.qtd_acertos_facil++;
           break;
         case ConstDificuldade.MEDIO:
-          if (acertou) this.questaoDiariaDTO.qtd_acertos_media++;
+          if (this.acertou) this.questaoDiariaDTO.qtd_acertos_media++;
           break;
         case ConstDificuldade.DIFICIL:
-          if (acertou) this.questaoDiariaDTO.qtd_acertos_dificil++;
+          if (this.acertou) this.questaoDiariaDTO.qtd_acertos_dificil++;
           break;
       }
     }
 
     this.questaoDiariaDTO.ids_questoes_respondidas.push(this.questaoDiaria.id);
-    
-    const tempoDecorrido = (Date.now() - this.tempoInicioQuestao) / 1000;
-    this.tempoPorQuestao.push(tempoDecorrido);
 
-    this.exibirPopup(acertou ? 'Parabéns! Você acertou!' : 'Que pena! Você errou!');
+    const tempoDecorrido = parseFloat(((Date.now() - this.tempoInicioQuestao) / 1000 / 60).toFixed(2));
+    this.tempoPorQuestao.push(tempoDecorrido);    
+
+    this.respostaConfirmada = true;
     this.salvarProgresso();
+  }
+
+  proximaQuestao(): void {
     this.carregarNovaQuestao();
   }
 
@@ -177,11 +143,12 @@ export class DesafioDiarioComponent implements OnInit {
       ultimaQuestao: this.questaoDiaria,
       ultimaQuestaoItens: this.questionItems,
       tempoMedio: this.tempoPorQuestao.length > 0 ? this.tempoPorQuestao.reduce((a, b) => a + b, 0) / this.tempoPorQuestao.length : 0,
-      finalizado: this.questaoDiariaDTO.ids_questoes_respondidas.length >= 10
+      finalizado: false,
+      sequenciaAtualAcertos: this.sequenciaAtualAcertos,
+      maiorSequenciaAcertos: this.maiorSequenciaAcertos
     };
     localStorage.setItem('progressoDesafio', JSON.stringify(progresso));
   }
-
 
   private carregarProgresso(): void {
     const progressoSalvo = localStorage.getItem('progressoDesafio');
@@ -191,6 +158,8 @@ export class DesafioDiarioComponent implements OnInit {
       this.questaoDiariaDTO.ids_questoes_acertadas = progresso.ids_questoes_acertadas || [];
       this.currentQuestion = progresso.currentQuestion || 0;
       this.tempoPorQuestao = progresso.temposPorQuestao || [];
+      this.sequenciaAtualAcertos = progresso.sequenciaAtualAcertos || 0;
+      this.maiorSequenciaAcertos = progresso.maiorSequenciaAcertos || 0;
 
       if (progresso.ultimaQuestao && progresso.ultimaQuestaoItens) {
         this.questaoDiaria = progresso.ultimaQuestao;
@@ -201,4 +170,165 @@ export class DesafioDiarioComponent implements OnInit {
     }
   }
 
+  carregarNovaQuestao(): void {
+    this.carregarProgresso();
+    console.log(this.escolhaAreaConhecimento);
+
+
+    if (this.questaoDiariaDTO.ids_questoes_respondidas.length >= 10) {
+      const progressoSalvo = localStorage.getItem('progressoDesafio');
+      if (progressoSalvo) {
+        const progresso = JSON.parse(progressoSalvo);
+
+        if (!progresso.finalizado) {
+          const estatisticasRequest: EstatisticasQuestaoUsuarioRequestDTO = {
+            idUsuario: this.usuario.id,
+            numeroQuestoesRespondidas: progresso.numeroQuestoesRespondidas,
+            idsQuestoesRespondidas: progresso.ids_questoes_respondidas,
+            idsQuestoesAcertadas: progresso.ids_questoes_acertadas,
+            tempoMedio: progresso.tempoMedio,
+            finalizado: progresso.finalizado,
+            sequenciaAtualAcertos: progresso.sequenciaAtualAcertos,
+            maiorSequenciaAcertos: progresso.maiorSequenciaAcertos,
+          };
+
+          this.estatisticaQuestaoUsuarioService.salvarProgressoUsuario(estatisticasRequest).subscribe({
+            next: () => {
+              progresso.finalizado = true;
+              localStorage.setItem('progressoDesafio', JSON.stringify(progresso));
+            },
+            error: (err) => {
+              console.error('Erro ao salvar progresso no backend:', err);
+            },
+          });
+        }
+      }
+      this.router.navigate(['/estatisticas-diaria']);
+    } else {
+      this.respostaConfirmada = false;
+      this.selectedIndex = null;
+      this.idItemSelecionado = 0;
+      this.dicasDesabilitadas = [];
+
+      if (this.escolhaAreaConhecimento != 0) {
+        this.questaoDiariaService.resgatarQuestaoUsuarioPorArea(this.questaoDiariaDTO, this.escolhaAreaConhecimento).subscribe({
+          next: (data) => {
+            if (!data || !data.questaoDiaria || !data.itemQuestaoDiariaList) {
+              console.warn('Dados da questão diária estão incompletos ou inválidos.');
+              return;
+            }
+
+            this.questaoDiaria = data.questaoDiaria;
+            this.questionItems = data.itemQuestaoDiariaList.map(item => ({
+              ...item,
+              description: this.removerTagsHtml(item.description),
+            }));
+            this.areaConhecimento = ConstAreaConhecimento.getAreaConhecimento(data.questaoDiaria.fkCourseId);
+            this.currentQuestion++;
+
+            this.tempoInicioQuestao = Date.now();
+            this.salvarProgresso();
+          },
+          error: (err) => {
+            console.error('Erro ao carregar a questão diária:', err);
+          },
+        });
+      } else {
+        this.questaoDiariaService.resgatarQuestaoUsuario(this.questaoDiariaDTO).subscribe({
+          next: (data) => {
+            if (!data || !data.questaoDiaria || !data.itemQuestaoDiariaList) {
+              console.warn('Dados da questão diária estão incompletos ou inválidos.');
+              return;
+            }
+
+            this.questaoDiaria = data.questaoDiaria;
+            this.questionItems = data.itemQuestaoDiariaList.map(item => ({
+              ...item,
+              description: this.removerTagsHtml(item.description),
+            }));
+            this.areaConhecimento = ConstAreaConhecimento.getAreaConhecimento(data.questaoDiaria.fkCourseId);
+            this.currentQuestion++;
+
+            this.tempoInicioQuestao = Date.now();
+            this.salvarProgresso();
+          },
+          error: (err) => {
+            console.error('Erro ao carregar a questão diária:', err);
+          },
+        });
+      }
+    }
+  }
+
+
+  removerTagsHtml(texto: string): string {
+    return texto.replace(/<\/?[^>]+(>|$)/g, "").trim();
+  }
+
+  dicasDesabilitadas: number[] = [];
+
+  usarDica(): void {
+    if (this.usuario?.qtd_dicas <= 0) {
+      alert('Você não tem mais dicas disponíveis!');
+      return;
+    }
+
+    if (this.dicasDesabilitadas.length >= 2) {
+      alert('Você já usou o máximo de dicas permitidas nesta questão!');
+      return;
+    }
+
+    const itensIncorretos = this.questionItems
+      .map((item, index) => ({ item, index }))
+      .filter(({ item, index }) => !item.correctItem && !this.dicasDesabilitadas.includes(index));
+
+    if (itensIncorretos.length === 0) {
+      alert('Não há mais itens incorretos para excluir!');
+      return;
+    }
+
+    const itemIncorreto = itensIncorretos[0];
+    this.dicasDesabilitadas.push(itemIncorreto.index);
+
+    this.usuario.qtd_dicas--;
+    this.usuarioService.update(this.usuario).subscribe(() => {
+      localStorage.setUsuario(this.usuario);
+    });
+
+    this.salvarProgresso();
+  }
+
+  pularQuestao(): void {
+    if (this.usuario?.qtd_pulos <= 0) {
+      alert('Você não tem mais pulos disponíveis!');
+      return;
+    }
+
+    if (this.questaoDiaria) {
+      this.questaoDiariaDTO.ids_questoes_respondidas.push(this.questaoDiaria.id);
+      this.questaoDiariaDTO.ids_questoes_acertadas.push(this.questaoDiaria.id);
+      this.sequenciaAtualAcertos++;
+      this.maiorSequenciaAcertos = Math.max(this.maiorSequenciaAcertos, this.sequenciaAtualAcertos);
+
+      switch (this.questaoDiaria.difficulty) {
+        case ConstDificuldade.FACIL:
+          this.questaoDiariaDTO.qtd_acertos_facil++;
+          break;
+        case ConstDificuldade.MEDIO:
+          this.questaoDiariaDTO.qtd_acertos_media++;
+          break;
+        case ConstDificuldade.DIFICIL:
+          this.questaoDiariaDTO.qtd_acertos_dificil++;
+          break;
+      }
+    }
+
+    this.usuario.qtd_pulos--;
+    this.usuarioService.update(this.usuario).subscribe(() => {
+      localStorage.setUsuario(this.usuario);
+    });
+
+    this.salvarProgresso();
+    this.carregarNovaQuestao();
+  }
 }

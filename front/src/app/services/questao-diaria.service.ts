@@ -13,6 +13,10 @@ export class QuestaoDiariaService {
 
     constructor(private http: HttpClient) { }
 
+    resgatarQuestaoUsuarioPorArea(desempenhoUsuario: QuestaoRequestDTO, area: number): Observable<QuestaoResponseDTO> {
+        return this.http.post<QuestaoResponseDTO>(`${this.apiUrl}/area?area=${area}`, desempenhoUsuario);
+      }
+      
     resgatarQuestaoUsuario(desempenhoUsuario: QuestaoRequestDTO): Observable<QuestaoResponseDTO> {
         return this.http.post<QuestaoResponseDTO>(`${this.apiUrl}`, desempenhoUsuario);
     }

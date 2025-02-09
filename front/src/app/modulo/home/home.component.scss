@@ -12,6 +12,7 @@ html {
     height: 80vh;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 40px;
 }
 
 header {
@@ -32,15 +33,17 @@ header img {
 }
 
 header h1 {
+    font-family: "Darker Grotesque", serif;
     font-size: 42px;
     font-weight: 900;
     line-height: 50px;
     margin: 0;
 }
 
-header h4 {
-    font-size: 24px;
-    font-weight: 300;
+header h2 {
+    font-family: "Darker Grotesque", serif;
+    font-size: 30px;
+    font-weight: 500;
     line-height: 28px;
     text-align: center;
     padding: 0 15%;
@@ -50,10 +53,9 @@ header h4 {
 button {
     background-color: white;
     font-family: "Darker Grotesque";
-    font-size: 20px;
     font-weight: bold;
     color: rgb(0, 0, 0);
-    padding: 10px 20px;
+    padding: 10px 5px;
     border: solid 1px #0E1726;
     border-radius: 10px;
     width: 100%;
@@ -63,12 +65,6 @@ button {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button[routerLink="/desafio-diario"] {
-    background-color: #3179FF;
-    color: white;
-    border: none;
-}
-
 button:hover {
     background-color: #f0f0f0;
 }
@@ -76,6 +72,23 @@ button:hover {
 button[routerLink="/desafio-diario"]:hover {
     background-color: #265ecf;
     color: white;
+}
+
+button[routerLink="/desafio-diario"] {
+    background-color: #3179FF;
+    color: white;
+    border: none;
+}
+
+button[routerLink="/escolher-area"]:hover {
+    background-color: #c77203;
+    color: white;
+}
+
+button[routerLink="/escolher-area"] {
+    background-color: #F18701;
+    color: white;
+    border: none;
 }
 
 img {

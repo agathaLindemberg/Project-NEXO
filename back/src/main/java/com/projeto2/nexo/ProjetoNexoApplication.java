@@ -19,8 +19,8 @@ public class ProjetoNexoApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ProjetoNexoApplication.class, args);
-        QuestaoDiariaService questaoDiariaService = context.getBean(QuestaoDiariaService.class);
-
-        questaoDiariaService.resgatarQuestoesDiariasPadrao();
+//        QuestaoDiariaService questaoDiariaService = context.getBean(QuestaoDiariaService.class);
+//
+//        questaoDiariaService.resgatarQuestoesDiariasPadrao();
     }
 }

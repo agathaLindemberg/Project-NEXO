@@ -1,0 +1,64 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0px 10%;
+    margin: 80px 0px;
+    font-weight: 500;
+}
+
+.areas {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px;
+    color: white;
+    margin: 0px 20px;
+    border: solid 4px #959BA6;
+    border-radius: 20px;
+}
+
+.matematica {
+    background-color: #3179FF;
+}
+
+.humanas {
+    background-color: #F7B801;
+}
+
+.natureza {
+    background-color: #40B600;
+}
+
+.linguagens {
+    background-color: #F33404;
+}
+
+h1 {
+    font-weight: 600;
+    line-height: 56.95px;
+}

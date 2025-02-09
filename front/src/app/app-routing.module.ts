@@ -7,6 +7,7 @@ import { DesafioDiarioComponent } from './modulo/desafio-diario/desafio-diario.c
 import { SobreComponent } from './modulo/sobre/sobre.component';
 import { EstatisticasDiariaComponent } from './modulo/estatisticas-diaria/estatisticas-diaria.component';
 import { PaginaUsuarioComponent } from './modulo/pagina-usuario/pagina-usuario.component';
+import { EscolherAreasConhecimentoComponent } from './modulo/escolher-areas-conhecimento/escolher-areas-conhecimento.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'sobre', component: SobreComponent },
   { path: 'estatisticas-diaria', component: EstatisticasDiariaComponent },
   { path: 'perfil', component: PaginaUsuarioComponent },
+  { path: 'escolher-area', component: EscolherAreasConhecimentoComponent },
 ];
 
 @NgModule({

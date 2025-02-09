@@ -30,6 +30,14 @@ public class QuestaoDiariaResource {
         return ResponseEntity.ok(questaoDiaria);
     }
 
+    @PostMapping("/area")
+    public ResponseEntity<QuestaoResponseDTO> resgatarQuestaoUsuarioPorArea(
+            @RequestBody QuestaoRequestDTO desempenhoUsuario, @RequestParam Integer area) {
+        QuestaoResponseDTO questaoDiaria = service.escolherProximaQuestaoPorArea(desempenhoUsuario, area);
+        return ResponseEntity.ok(questaoDiaria);
+    }
+
+
     @GetMapping("/listar")
     public List<QuestaoDiaria> getByIds(@RequestParam List<Integer> ids) {
         return service.findByIdIn(ids);

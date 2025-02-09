@@ -13,7 +13,8 @@ html {
     height: 80vh;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .cadastro-card {
@@ -55,7 +56,6 @@ header h1 {
     width: 100%;
     padding: 15px;
     font-family: "Darker Grotesque", serif;
-    font-size: 17px;
     border: 1px solid #333;
     border-radius: 10px;
     box-sizing: border-box;
@@ -64,15 +64,13 @@ header h1 {
 .form-group p {
     font-family: "Darker Grotesque", serif;
     font-optical-sizing: auto;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 15px;
-    font-size: 20px;
 }
 
 button {
     background-color: white;
     font-family: "Darker Grotesque";
-    font-size: 20px;
     font-weight: bold;
     color: rgb(255, 255, 255);
     padding: 10px 20px;
@@ -96,7 +94,6 @@ button:hover {
     font-optical-sizing: auto;
     font-weight: 700;
     margin-top: 15px;
-    font-size: 20px;
 }
 
 a {

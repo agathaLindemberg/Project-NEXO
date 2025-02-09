@@ -4,20 +4,17 @@ html {
     padding: 0;
     width: 100%;
     padding-bottom: 18vh;
-    font-family: "Roboto Flex", serif;
     font-optical-sizing: auto;
     line-height: normal;
 }
 
-p,
 ol,
 ul {
-    font-size: 20px;
+    font-family: "Roboto Flex", serif;
 }
 
 h3 {
     padding: 10px 0px;
-    font-size: 25px;
 }
 
 li {
@@ -77,9 +74,7 @@ li {
 .pulo p,
 .informacoes-usuario p {
     margin: 0;
-    font-family: "Darker Grotesque", sans-serif;
-    font-size: 17px;
-    font-weight: 900;
+    font-weight: 600;
     color: #1E2A40;
     text-align: center;
     white-space: nowrap;
@@ -97,7 +92,6 @@ li {
     right: 50px;
     background: none;
     color: inherit;
-    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
     border: none;

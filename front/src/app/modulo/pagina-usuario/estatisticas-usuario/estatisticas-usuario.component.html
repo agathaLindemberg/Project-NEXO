@@ -1,0 +1,70 @@
+<div class="legenda-descricoes">
+    <p>Este é um jogo de dificuldade adaptativa. E para isso levamos em consideração o desempenho geral e seu desempenho
+        individual. Leia as legendas e observe os gráficos:</p>
+</div>
+
+<div class="legenda">
+    <h2>LEGENDA DE CORES</h2>
+    <div class="legenda-itens">
+        <div><img src="assets/imagens/icone-matematica.png" alt="Matemática"> <span>MATEMÁTICA E SUAS
+                TECNOLOGIAS</span></div>
+        <div><img src="assets/imagens/icone-linguagem.png" alt="Linguagens"> <span>LINGUAGENS E CÓDIGOS</span></div>
+        <div><img src="assets/imagens/icone-natureza.png" alt="Ciências da Natureza"> <span>CIÊNCIAS DA
+                NATUREZA</span>
+        </div>
+        <div><img src="assets/imagens/icone-humanas.png" alt="Ciências Humanas"> <span>CIÊNCIAS HUMANAS</span></div>
+    </div>
+</div>
+
+<div class="legenda-descricoes" *ngIf="mostrarEstatisticas" >
+    <div class="estatisticas-container">
+        <p><strong>Estatísticas por dia</strong></p>
+
+        <div class="selecionar-data">
+            <input type="date" id="dataSelecionada" [(ngModel)]="dataSelecionada"
+                (change)="carregarEstatisticasPorData()" />
+        </div>
+    </div>
+
+    <div class="estatisticas">
+        <div class="conteudo-estatisticas">
+            <div class="grafico">
+                <h4>ACERTOS POR ÁREAS DO CONHECIMENTO</h4>
+                <p-chart type="bar" [data]="data" class="h-[30rem]"></p-chart>
+            </div>
+
+            <div class="progresso">
+                <h4>PROGRESSO</h4>
+                <div>
+                    <div class="item-progresso">
+                        <div class="texto">
+                            <strong>{{ percentualAcertos }}</strong>
+                            <br>de acerto geral
+                        </div>
+                        <div class="imagem">
+                            <img src="assets/imagens/icone-acertos-gerais.png" alt="">
+                        </div>
+                    </div>
+                    <div class="item-progresso">
+                        <div class="texto">
+                            <strong>{{ tempoMedio }}</strong>
+                            <br>min por questão
+                        </div>
+                        <div class="imagem">
+                            <img src="assets/imagens/icone-relogio.png" alt="">
+                        </div>
+                    </div>
+                    <div class="item-progresso">
+                        <div class="texto">
+                            <strong>{{ acertosSeguidos }}</strong>
+                            <br>acertos seguidos
+                        </div>
+                        <div class="imagem">
+                            <img src="assets/imagens/icone-joinha.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

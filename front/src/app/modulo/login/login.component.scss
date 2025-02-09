@@ -11,7 +11,9 @@ html {
     align-items: center;
     height: 80vh;
     width: 100%;
+    margin-top: 30px;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .login-card {
@@ -22,26 +24,22 @@ html {
     justify-content: center;
     align-items: center;
     padding: 30px 50px 60px 50px;
-    width: 20%;
+    width: 25%;
 }
 
 header {
     width: 100%;
-    font-family: "Darker Grotesque", serif;
-    font-optical-sizing: auto;
     font-weight: bold;
     text-align: center;
     padding-bottom: 50px;
-    font-size: 14px;
 }
 
 header h1 {
     font-family: "Darker Grotesque", serif;
-    font-optical-sizing: auto;
     font-weight: bold;
     text-align: center;
-    font-size: 42px;
-    padding: 30px 0;
+    padding: 20px 0;
+    font-size: 36px;
 }
 .form-group {
     text-align: start;
@@ -55,26 +53,20 @@ header h1 {
 .form-group input {
     width: 100%;
     padding: 15px;
-    font-family: "Darker Grotesque", serif;
-    font-size: 17px;
     border: 1px solid #333;
     border-radius: 10px;
     box-sizing: border-box;
 }
 
 .form-group p {
-    font-family: "Darker Grotesque", serif;
     font-optical-sizing: auto;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 15px;
-    font-size: 20px;
 }
 
 button {
     background-color: white;
-    font-family: "Darker Grotesque";
-    font-size: 20px;
-    font-weight: bold;
+    font-weight: 400;
     color: rgb(255, 255, 255);
     padding: 10px 20px;
     border: solid 1px #0E1726;
@@ -96,11 +88,9 @@ button:hover {
     display: flex;
     text-align: center;
     justify-content: center;
-    font-family: "Darker Grotesque", serif;
     font-optical-sizing: auto;
     font-weight: 700;
     margin-top: 15px;
-    font-size: 20px;
 }
 
 a {
