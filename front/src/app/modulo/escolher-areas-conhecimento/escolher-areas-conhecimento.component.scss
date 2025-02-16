@@ -2,6 +2,7 @@ body,
 html {
     margin: 0;
     padding: 0;
+    height: 100%;
     width: 100%;
 }
 
@@ -14,51 +15,91 @@ html {
 }
 
 .titulo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 0px 10%;
-    margin: 80px 0px;
-    font-weight: 500;
+    margin: 40px 0px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 33px;
+}
+
+.subtitulo {
+    margin-bottom: 40px;
+    font-size: 23px;
+    font-weight: 400;
 }
 
 .areas {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .area {
+    width: 300px;
+    height: 300px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 120px;
-    color: white;
-    margin: 0px 20px;
-    border: solid 4px #959BA6;
-    border-radius: 20px;
+    border: solid 4px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 30px;
 }
 
 .matematica {
-    background-color: #3179FF;
+    border-color: #2761CC;
+
+    h2 {
+        color: #2761CC;
+    }
 }
 
 .humanas {
-    background-color: #F7B801;
+    border-color: #F18701;
+
+    h2 {
+        color: #F18701;
+    }
 }
 
 .natureza {
-    background-color: #40B600;
+    border-color: #287300;
+
+    h2 {
+        color: #287300;
+    }
 }
 
 .linguagens {
-    background-color: #F33404;
+    border-color: #F33404;
+
+    h2 {
+        color: #F33404;
+    }
 }
 
-h1 {
-    font-weight: 600;
-    line-height: 56.95px;
+.area img {
+    width: auto;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.custo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.custo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 30px;
 }

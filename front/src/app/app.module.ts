@@ -19,6 +19,7 @@ import { PaginaUsuarioComponent } from './modulo/pagina-usuario/pagina-usuario.c
 import { PerfilComponent } from './modulo/pagina-usuario/perfil/perfil.component';
 import { EstatisticasUsuarioComponent } from './modulo/pagina-usuario/estatisticas-usuario/estatisticas-usuario.component';
 import { EscolherAreasConhecimentoComponent } from './modulo/escolher-areas-conhecimento/escolher-areas-conhecimento.component';
+import { AlertaExcecaoComponent } from './shared/alerta-excecao/alerta-excecao.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EscolherAreasConhecimentoComponent } from './modulo/escolher-areas-conh
     PaginaUsuarioComponent,
     PerfilComponent,
     EstatisticasUsuarioComponent,
-    EscolherAreasConhecimentoComponent
+    EscolherAreasConhecimentoComponent,
+    AlertaExcecaoComponent
   ],
   imports: [
     ChartModule,

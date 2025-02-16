@@ -1,0 +1,4 @@
+<div class="alerta-excecao" *ngIf="mensagem" [class.show]="visivel">
+    <span>{{ mensagem }}</span>
+    <button (click)="fechar()">✖</button>
+</div>
