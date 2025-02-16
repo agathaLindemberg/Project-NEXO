@@ -27,12 +27,20 @@ public class EstatisticasQuestoesUsuario {
     private Integer idEstatisticaUsuario;
 
     @ElementCollection
-    @Column(name = "ids_questoes_acertadas")
-    private List<Integer> idsQuestoesRespondidas;
+    @Column(name = "ids_questoes_respondidas_diaria")
+    private List<Integer> idsQuestoesRespondidasDiaria;
 
     @ElementCollection
-    @Column(name = "ids_questoes_acertadas")
-    private List<Integer> idsQuestoesAcertadas;
+    @Column(name = "ids_questoes_acertadas_diaria")
+    private List<Integer> idsQuestoesAcertadasDiaria;
+
+    @ElementCollection
+    @Column(name = "ids_questoes_respondidas_por_area")
+    private List<Integer> idsQuestoesRespondidasPorArea;
+
+    @ElementCollection
+    @Column(name = "ids_questoes_acertadas_por_area")
+    private List<Integer> idsQuestoesAcertadasPorArea;
 
     @Column(name = "data_realizada")
     private Date dataRealizada;

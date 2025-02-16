@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/usuario")
 @CrossOrigin("http://localhost:4200")
@@ -49,5 +51,11 @@ public class UsuarioResource {
         } catch (ResponseStatusException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getReason());
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Integer id) {
+        Optional<Usuario> usuario = service.getUsuarioById(id);
+        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

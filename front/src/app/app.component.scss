@@ -77,34 +77,41 @@ html {
     }
 }
 
-.informacoes-usuario{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid #D2D5D9;
-  border-radius: 30px;
-  padding: 8px 25px;
-  min-width: 20px;
-  height: auto;
+.informacoes-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #D2D5D9;
+    border-radius: 30px;
+    padding: 8px 25px;
+    min-width: 20px;
+    height: auto;
 }
 
 .informacoes-usuario img {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .informacoes-usuario p {
-  margin: 0;
-  font-family: "Darker Grotesque", sans-serif;
-  font-weight: 900;
-  color: #1E2A40;
-  text-align: center;
-  white-space: nowrap;
+    margin: 0;
+    font-family: "Darker Grotesque", sans-serif;
+    font-weight: 900;
+    color: #1E2A40;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .nome-projeto h1 {
+    position: relative;
+    left: -50px;
     cursor: pointer;
+}
+
+.perfil {
+    position: relative;
+    right: -25px;
 }
 
 mat-icon {

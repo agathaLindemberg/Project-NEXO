@@ -24,5 +24,4 @@ export class QuestaoDiariaService {
     getByIdIn(ids: number[]): Observable<QuestaoDiaria[]> {
         return this.http.get<QuestaoDiaria[]>(`${this.apiUrl}/listar?ids=${ids.join(',')}`);
     }
-
 }

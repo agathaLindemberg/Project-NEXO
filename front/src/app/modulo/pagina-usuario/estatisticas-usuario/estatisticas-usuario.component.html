@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="legenda-descricoes" *ngIf="mostrarEstatisticas" >
+<div class="legenda-descricoes" *ngIf="mostrarEstatisticas">
     <div class="estatisticas-container">
         <p><strong>Estatísticas por dia</strong></p>
 
@@ -64,6 +64,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="legenda-descricoes" *ngIf="mostrarEstatisticas">
+    <div class="estatisticas">
+        <div class="conteudo-estatisticas">
+            <div class="grafico-area">
+                <h4>ACERTOS POR ÁREAS DO CONHECIMENTO</h4>
+                <p-chart type="bar" [data]="dataQuestoesPorArea" class="h-[30rem]"></p-chart>
             </div>
         </div>
     </div>

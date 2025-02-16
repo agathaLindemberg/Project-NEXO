@@ -15,9 +15,10 @@ export class EstatisticasUsuarioComponent implements OnInit {
   dataSelecionada: string;
   mostrarEstatisticas: boolean = false;
   percentualAcertos: string = '0%';
-  tempoMedio: string = '0 min';
+  tempoMedio: string = '0';
   acertosSeguidos: number = 0;
   data: any;
+  dataQuestoesPorArea: any;
   usuario: Usuario | null = null;
 
   constructor(
@@ -54,7 +55,7 @@ export class EstatisticasUsuarioComponent implements OnInit {
     this.estatisticasQuestaoUsuarioService.getUltimoDiaComEstatisticas(this.usuario.id).subscribe({
       next: (res) => {
         if (res) {
-          this.dataSelecionada = this.dataPipe.transform(res.data, 'yyyy-MM-dd');          this.carregarEstatisticasPorData();
+          this.dataSelecionada = this.dataPipe.transform(res.data, 'yyyy-MM-dd'); this.carregarEstatisticasPorData();
         } else {
           this.mostrarEstatisticas = false;
         }
@@ -68,7 +69,7 @@ export class EstatisticasUsuarioComponent implements OnInit {
 
   atualizarEstatisticas(estatisticas: EstatisticasUsuarioDTO): void {
     this.percentualAcertos = `${estatisticas.percentualAcertos}%`;
-    this.tempoMedio = `${estatisticas.tempoMedio} min`;
+    this.tempoMedio = `${estatisticas.tempoMedio}`;
     this.acertosSeguidos = estatisticas.acertosSeguidos;
 
     this.data = {
@@ -77,20 +78,20 @@ export class EstatisticasUsuarioComponent implements OnInit {
       datasets: [
         {
           label: 'Questões Respondidas', data: [
-            estatisticas.quantidadeQuestaoRespondidaMatematica,
-            estatisticas.quantidadeQuestaoRespondidaHumanas,
-            estatisticas.quantidadeQuestaoRespondidaLinguagem,
-            estatisticas.quantidadeQuestaoRespondidaNatureza
+            estatisticas.quantidadeQuestaoDiariasRespondidaMatematica,
+            estatisticas.quantidadeQuestaoDiariasRespondidaHumanas,
+            estatisticas.quantidadeQuestaoDiariasRespondidaLinguagem,
+            estatisticas.quantidadeQuestaoDiariasRespondidaNatureza
           ],
           backgroundColor: '#B0BEC5',
           borderWidth: 1
         },
         {
           label: 'Questões Acertadas', data: [
-            estatisticas.quantidadeQuestaoAcertosMatematica,
-            estatisticas.quantidadeQuestaoAcertosHumanas,
-            estatisticas.quantidadeQuestaoAcertosLinguagem,
-            estatisticas.quantidadeQuestaoAcertosNatureza
+            estatisticas.quantidadeQuestaoDiariasAcertosMatematica,
+            estatisticas.quantidadeQuestaoDiariasAcertosHumanas,
+            estatisticas.quantidadeQuestaoDiariasAcertosLinguagem,
+            estatisticas.quantidadeQuestaoDiariasAcertosNatureza
           ],
           backgroundColor: [
             '#3179FF',
@@ -107,6 +108,50 @@ export class EstatisticasUsuarioComponent implements OnInit {
           },
           y: {
             stacked: true,
+            beginAtZero: true,
+          }
+        }
+      }
+    };
+
+    this.dataQuestoesPorArea = {
+      type: 'bar',
+      labels: ['Matemática', 'Humanas', 'Linguagens', 'Natureza'],
+      datasets: [
+        {
+          label: 'Questões Respondidas',
+          data: [
+            estatisticas.quantidadeQuestaoAreasRespondidaMatematica,
+            estatisticas.quantidadeQuestaoAreasRespondidaHumanas,
+            estatisticas.quantidadeQuestaoAreasRespondidaLinguagem,
+            estatisticas.quantidadeQuestaoAreasRespondidaNatureza
+          ],
+          backgroundColor: '#B0BEC5',
+          borderWidth: 1
+        },
+        {
+          label: 'Questões Acertadas',
+          data: [
+            estatisticas.quantidadeQuestaoAreasAcertosMatematica,
+            estatisticas.quantidadeQuestaoAreasAcertosHumanas,
+            estatisticas.quantidadeQuestaoAreasAcertosLinguagem,
+            estatisticas.quantidadeQuestaoAreasAcertosNatureza
+          ],
+          backgroundColor: [
+            '#3179FF',
+            '#F7B801',
+            '#F33404',
+            '#40B600'
+          ],
+          borderWidth: 1
+        }
+      ],
+      options: {
+        scales: {
+          x: {
+            stacked: false,
+          },
+          y: {
             beginAtZero: true,
           }
         }

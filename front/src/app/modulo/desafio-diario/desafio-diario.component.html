@@ -1,4 +1,19 @@
-<div *ngIf="questaoDiaria" class="questao-container">
+<div *ngIf="ultimaQuestao" class="questao-container">
+    <div class="area-dificuldade">
+        <div class="area" [ngClass]="obterNomeArea(ultimaQuestao?.fkCourseId)">
+            <img [src]="obterImagemArea(ultimaQuestao?.fkCourseId)" alt="Área" />
+            <h3>{{ obterNomeArea(ultimaQuestao?.fkCourseId) }}</h3>
+        </div>
+
+        <div class="dificuldade" [ngClass]="{
+            'facil': ultimaQuestao?.difficulty === 1,
+            'medio': ultimaQuestao?.difficulty === 2,
+            'dificil': ultimaQuestao?.difficulty === 3
+          }">
+            <h3>{{ obterNivelDificuldade(ultimaQuestao?.difficulty) }}</h3>
+        </div>
+    </div>
+
     <div class="barra-progresso">
         <span class="numero-questao">QUESTÃO {{ currentQuestion }}</span>
         <div class="progress-bar">
@@ -7,21 +22,22 @@
     </div>
 
     <div class="indicativo-questao">
-        <p>Questão ENEM | {{ questaoDiaria.year }} - {{ areaConhecimento }} </p>
+        <p>Questão ENEM | {{ ultimaQuestao?.year }} - {{ obterAreaConhecimento(ultimaQuestao?.fkCourseId) }}</p>
     </div>
 
-    <div class="questao-texto" [innerHTML]="questaoDiaria.baseText"></div>
-    <div class="questao-texto" [innerHTML]="questaoDiaria.stem"></div>
+
+    <div class="questao-texto" [innerHTML]="ultimaQuestao.baseText"></div>
+    <div class="questao-texto" [innerHTML]="ultimaQuestao.stem"></div>
 
     <ul class="question-items">
-        <li *ngFor="let item of questionItems; let i = index" [class.marcado]="i === selectedIndex"
+        <li *ngFor="let item of ultimaQuestaoItens; let i = index" [class.marcado]="i === selectedIndex"
             [class.correto]="respostaConfirmada && item.correctItem"
             [class.incorreto]="respostaConfirmada && i === selectedIndex && !item.correctItem"
             [class.disabled]="dicasDesabilitadas.includes(i)">
-            <button class="item-botao" (click)="markItem(i)"
+            <button class="item-botao" (click)="selecionarItem(i)"
                 [disabled]="dicasDesabilitadas.includes(i) || respostaConfirmada">
                 <span class="bolinha" [class.checked]="i === selectedIndex"></span>
-                <span>{{ getLetter(i) }}</span>
+                <span>{{ getLetraItem(i) }}</span>
                 <div [innerHTML]="item.description"></div>
             </button>
         </li>
@@ -39,18 +55,24 @@
         <ng-container *ngIf="!respostaConfirmada && usuario">
             <div class="dica" (click)="usarDica()">
                 <img src="assets/imagens/icone-dica.png" alt="Ícone Dicas">
-                <p>{{ usuario?.qtd_dicas }}</p>
+                <p>{{ usuario.qtd_dicas }}</p>
+                <div class="bolinha-acoes" (click)="comprarDica($event)">
+                    <p>+</p>
+                </div>
             </div>
 
             <div *ngIf="dicasDesabilitadas.length === 0" class="pulo" (click)="pularQuestao()">
                 <img src="assets/imagens/icone-skip.png" alt="Ícone Pular Questão">
-                <p>{{ usuario?.qtd_pulos }}</p>
+                <p>{{ usuario.qtd_pulos }}</p>
+                <div class="bolinha-acoes" (click)="comprarPulo($event)">
+                    <p>+</p>
+                </div>
             </div>
 
             <div *ngIf="dicasDesabilitadas.length > 0" class="resultado">
-                {{ dicasDesabilitadas.length }} alternativa{{ dicasDesabilitadas.length > 1 ? 's' : '' }} fo{{
-                dicasDesabilitadas.length > 1 ? 'ram' : 'i' }} eliminada{{ dicasDesabilitadas.length > 1 ? 's' : ''
-                }}...
+                <h1> {{ dicasDesabilitadas.length }} alternativa{{ dicasDesabilitadas.length > 1 ? 's' : '' }} fo{{
+                    dicasDesabilitadas.length > 1 ? 'ram' : 'i' }} eliminada{{ dicasDesabilitadas.length > 1 ? 's' : ''
+                    }}...</h1>
             </div>
         </ng-container>
     </div>
@@ -59,3 +81,5 @@
         <button *ngIf="respostaConfirmada" class="continuar-botao" (click)="proximaQuestao()">Continuar</button>
     </div>
 </div>
+
+<app-alerta-excecao #alerta></app-alerta-excecao>

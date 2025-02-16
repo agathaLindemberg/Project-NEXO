@@ -1,49 +1,51 @@
 <body>
     <div class="container">
-        <h1 class="titulo">Áreas do Conhecimento</h1>
-        <h3 class="subtitulo">Escolha a área que deseja testar seus conhecimentos!</h3>
-
-        <div class="areas">
-            <div class="area humanas" 
-                 (click)="selecionarArea(40)" 
-                 [ngClass]="{'disabled': areasDesabilitadas.has(40)}">
-                <img src="assets/imagens/icone-area-humanas.png" alt="Humanas">
-                <h2>Humanas</h2>
-                <div class="custo">
-                    <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
-                    <p>50</p>
-                </div>
-            </div>
-            <div class="area linguagens" 
-                 (click)="selecionarArea(37)" 
-                 [ngClass]="{'disabled': areasDesabilitadas.has(37)}">
-                <img src="assets/imagens/icone-area-linguagens.png" alt="Linguagens">
-                <h2>Linguagens</h2>
-                <div class="custo">
-                    <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
-                    <p>50</p>
-                </div>
-            </div>
-            <div class="area matematica" 
-                 (click)="selecionarArea(38)" 
-                 [ngClass]="{'disabled': areasDesabilitadas.has(38)}">
-                <img src="assets/imagens/icone-area-matematica.png" alt="Matemática">
-                <h2>Matemática</h2>
-                <div class="custo">
-                    <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
-                    <p>50</p>
-                </div>
-            </div>
-            <div class="area natureza" 
-                 (click)="selecionarArea(39)" 
-                 [ngClass]="{'disabled': areasDesabilitadas.has(39)}">
-                <img src="assets/imagens/icone-area-natureza.png" alt="Natureza">
-                <h2>Natureza</h2>
-                <div class="custo">
-                    <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
-                    <p>50</p>
-                </div>
-            </div>
+      <h1 class="titulo">Áreas do Conhecimento</h1>
+      <h3 class="subtitulo">Escolha a área que deseja testar seus conhecimentos!</h3>
+  
+      <div class="areas">
+        <div class="area humanas" 
+             (click)="selecionarArea(40)" 
+             [ngClass]="{'disabled': areasDesabilitadas.has(40)}">
+          <img src="assets/imagens/icone-area-humanas.png" alt="Humanas">
+          <h2>Humanas</h2>
+          <div class="custo">
+            <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
+            <p>50</p>
+          </div>
         </div>
+        <div class="area linguagens" 
+             (click)="selecionarArea(37)" 
+             [ngClass]="{'disabled': areasDesabilitadas.has(37)}">
+          <img src="assets/imagens/icone-area-linguagens.png" alt="Linguagens">
+          <h2>Linguagens</h2>
+          <div class="custo">
+            <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
+            <p>50</p>
+          </div>
+        </div>
+        <div class="area matematica" 
+             (click)="selecionarArea(38)" 
+             [ngClass]="{'disabled': areasDesabilitadas.has(38)}">
+          <img src="assets/imagens/icone-area-matematica.png" alt="Matemática">
+          <h2>Matemática</h2>
+          <div class="custo">
+            <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
+            <p>50</p>
+          </div>
+        </div>
+        <div class="area natureza" 
+             (click)="selecionarArea(39)" 
+             [ngClass]="{'disabled': areasDesabilitadas.has(39)}">
+          <img src="assets/imagens/icone-area-natureza.png" alt="Natureza">
+          <h2>Natureza</h2>
+          <div class="custo">
+            <img src="assets/imagens/icone-dinheiro.png" alt="Moeda">
+            <p>50</p>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
+  
+  <app-alerta-excecao #alerta></app-alerta-excecao>

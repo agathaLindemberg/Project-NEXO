@@ -15,33 +15,4 @@
     <p class="especial" (click)="verEstatisticas()">Estatísticas de Jogos Anteriores</p>
 </div>
 
-<div class="acoes">
-    <div class="informacoes-usuario">
-        <img src="assets/imagens/icone-dinheiro.png" alt="Ícone Dinheiro">
-        <p class="acoes-normais">{{ usuario?.qtd_moedas }}</p>
-    </div>
-    
-    <div class="dica">
-        <img src="assets/imagens/icone-dica.png" alt="Ícone Dicas">
-        <p class="acoes-normais">{{ usuario?.qtd_dicas }}</p>
-    </div>
-
-    <div class="pulo">
-        <img src="assets/imagens/icone-skip.png" alt="Ícone Pular Questão">
-        <p class="acoes-normais">{{ usuario?.qtd_pulos }}</p>
-    </div>
-</div>
-
-<div class="acoes">
-    <div class="comprar-dica" (click)="comprarDica()">
-        <img src="assets/imagens/icone-dica.png" alt="Ícone Comprar Dicas">
-        <p>Comprar Dica</p>
-    </div>
-
-    <div class="comprar-pulo" (click)="comprarPulo()">
-        <img src="assets/imagens/icone-skip.png" alt="Ícone Comprar Pulos">
-        <p>Comprar Pulo</p>
-    </div>
-</div>
-
 <button type="submit" (click)="desconectar()">Desconectar</button>

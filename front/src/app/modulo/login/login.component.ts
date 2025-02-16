@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { AlertaExcecaoComponent } from 'src/app/shared/alerta-excecao/alerta-excecao.component';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @ViewChild('alerta') alerta!: AlertaExcecaoComponent;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -21,11 +23,11 @@ export class LoginComponent {
         if (success) {
           this.router.navigate(['/']);
         } else {
-          alert('Login ou senha inválidos');
+          this.alerta.mostrar(`Login ou senha inválidos.`, 'erro');
         }
       },
       error => {
-        alert('Erro ao tentar fazer login');
+        this.alerta.mostrar(`Erro ao tentar fazer login.`, 'erro');
       }
     );
   }

@@ -41,6 +41,7 @@ export class UsuarioService {
       map(response => {
         if (response) {
           this.setUsuario(response);
+          localStorage.removeItem('progressoDesafio');
           return true;
         }
       }),
@@ -50,6 +51,7 @@ export class UsuarioService {
 
   logout(): void {
     localStorage.removeItem('usuario');
+    localStorage.removeItem('progressoDesafio');
     this.usuarioSubject.next(null);
   }
 
@@ -73,5 +75,9 @@ export class UsuarioService {
   public setUsuario(usuario: Usuario) {
     localStorage.setItem('usuario', JSON.stringify(usuario));
     this.usuarioSubject.next(usuario);
+  }
+
+  getUsuarioById(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,33 +1,42 @@
 <div class="container">
     <div class="cadastro-card">
         <header>
-            <h1>Cadastrar</h1>
+            <h1>{{ isEdicao ? 'Editar Perfil' : 'Cadastrar' }}</h1>
         </header>
 
-        <body>
-            <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-                <div class="form-group">
-                    <p>Nome</p>
-                    <input type="text" id="nome" name="nome" placeholder="Nome" ngModel required />
-                </div>
-                <div class="form-group">
-                    <p>E-mail</p>
-                    <input type="text" id="email" name="email" placeholder="E-mail" ngModel required />
-                </div>
-                <div class="form-group">
-                    <p>Senha</p>
-                    <input type="password" id="senha" name="senha" placeholder="Senha" ngModel required />
-                </div>
-                <div class="form-group">
-                    <p>Confirmar senha</p>
-                    <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar senha" ngModel required />
-                </div>
-                <button type="submit" [disabled]="!loginForm.valid">Cadastrar</button>
-            </form>
-
-            <div class="conta-card">
-                <p>Já tenho conta! <a routerLink="/login"> Fazer Login</a></p>
+        <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+            <div class="form-group">
+                <p>Nome</p>
+                <input type="text" id="nome" name="nome" placeholder="Nome" ngModel #nome="ngModel" required
+                    minlength="5" (input)="validarNome(nome.value)" [ngModel]="usuario?.nome" />
+                <p class="erro" *ngIf="nome.dirty && nomeErro">{{ nomeErro }}</p>
             </div>
-        </body>
+
+            <div class="form-group">
+                <p>E-mail</p>
+                <input type="text" id="email" name="email" placeholder="E-mail" ngModel #email="ngModel" required email
+                    (input)="validarEmail(email.value)" [ngModel]="usuario?.email" />
+                <p class="erro" *ngIf="email.dirty && emailErro">{{ emailErro }}</p>
+            </div>
+
+            <div class="form-group" *ngIf="!isEdicao">
+                <p>Senha</p>
+                <input type="password" id="senha" name="senha" placeholder="Senha" ngModel required #senha="ngModel" />
+            </div>
+
+            <div class="form-group" *ngIf="!isEdicao">
+                <p>Confirmar senha</p>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar senha" ngModel
+                    required #confirmarSenha="ngModel" />
+            </div>
+
+            <button type="submit">{{ isEdicao ? 'Atualizar' : 'Cadastrar' }}</button>
+        </form>
+
+        <div class="conta-card" *ngIf="!isEdicao">
+            <p>Já tenho conta! <a routerLink="/login"> Fazer Login</a></p>
+        </div>
     </div>
 </div>
+
+<app-alerta-excecao #alerta></app-alerta-excecao>

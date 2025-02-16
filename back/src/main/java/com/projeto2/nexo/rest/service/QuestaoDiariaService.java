@@ -34,9 +34,9 @@ public class QuestaoDiariaService {
 
     @Scheduled(cron = "0 0 0 * * *")
     public void resgatarQuestoesDiariasPadrao() {
-        processarQuestoesPorDificuldade(ConstDificuldade.FACIL, 4);
-        processarQuestoesPorDificuldade(ConstDificuldade.MEDIO, 3);
-        processarQuestoesPorDificuldade(ConstDificuldade.DIFICIL, 3);
+        processarQuestoesPorDificuldade(ConstDificuldade.FACIL, 14);
+        processarQuestoesPorDificuldade(ConstDificuldade.MEDIO, 10);
+        processarQuestoesPorDificuldade(ConstDificuldade.DIFICIL, 6);
     }
 
     private void processarQuestoesPorDificuldade(Integer dificuldade, int quantidadePorArea) {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Usuario } from './model/usuario.model';
 import { Router } from '@angular/router';
 import { UsuarioService } from './services/usuario.service';
+import { AlertaExcecaoComponent } from './shared/alerta-excecao/alerta-excecao.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { UsuarioService } from './services/usuario.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('alerta') alerta!: AlertaExcecaoComponent;
+
   usuario: Usuario | null = null;
   isExpanded = false;
 
@@ -45,5 +48,9 @@ export class AppComponent implements OnInit {
 
   goPerfil(): void {
     this.router.navigate(['/perfil']);
+  }
+
+  mostrarAlertaAcessibilidade() {
+    this.alerta.mostrar(`Tá em desenvolvimento :x`, 'erro');
   }
 }

@@ -156,7 +156,7 @@ html {
   color: #666;
 }
 
-.resultado h1{
+.resultado h1 {
   margin: 0;
   font-weight: 900;
   color: #1E2A40;
@@ -224,4 +224,123 @@ html {
   color: #1E2A40;
   text-align: center;
   white-space: nowrap;
+}
+
+.bolinha-acoes {
+  position: absolute;
+  top: -15px;
+  right: -8px;
+  width: 30px;
+  height: 30px;
+  background-color: #3179FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  line-height: 30px;
+}
+
+.bolinha-acoes p {
+  position: absolute;
+  top: -5px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.dica,
+.pulo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #D2D5D9;
+  border-radius: 30px;
+  padding: 8px 25px;
+  min-width: 50px;
+  height: auto;
+  cursor: pointer;
+}
+
+.area-dificuldade {
+  display: flex;
+  margin: 40px 0px;
+}
+
+.area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-right: 15px;
+}
+
+.area img {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.area.HUMANAS {
+  border-color: #F18701;
+  color: #F18701;;
+}
+
+.area.LINGUAGENS {
+  border-color: #F33404;
+  color: #F33404;;
+}
+
+.area.MATEMÁTICA {
+  border-color: #2761CC;
+  color: #2761CC;;
+}
+
+.area.NATUREZA {
+  border-color: #287300;
+  color: #287300;
+}
+
+.area h3 {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.dificuldade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 2px 40px;
+  font-size: 16px;
+}
+
+.dificuldade h3 {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.dificuldade.facil {
+  border: 2px solid green;
+  background-color: rgba(0, 128, 0, 0.1);
+  color: green;
+}
+
+.dificuldade.medio {
+  border: 2px solid orange;
+  background-color: rgba(255, 165, 0, 0.1);
+  color: orange;
+}
+
+.dificuldade.dificil {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: red;
 }

@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'sobre', component: SobreComponent },
   { path: 'estatisticas-diaria', component: EstatisticasDiariaComponent },
   { path: 'perfil', component: PaginaUsuarioComponent },
+  { path: 'editar-perfil/:id', component: CadastroComponent },
   { path: 'escolher-area', component: EscolherAreasConhecimentoComponent },
 ];
 

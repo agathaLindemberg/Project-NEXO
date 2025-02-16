@@ -13,13 +13,22 @@ public class EstatisticasUsuarioDTO {
     private BigDecimal percentualAcertos;
     private BigDecimal tempoMedio;
     private int acertosSeguidos;
-    private int quantidadeQuestaoAcertosMatematica;
-    private int quantidadeQuestaoAcertosHumanas;
-    private int quantidadeQuestaoAcertosLinguagem;
-    private int quantidadeQuestaoAcertosNatureza;
-    private int quantidadeQuestaoRespondidaMatematica;
-    private int quantidadeQuestaoRespondidaHumanas;
-    private int quantidadeQuestaoRespondidaLinguagem;
-    private int quantidadeQuestaoRespondidaNatureza;
+    private int quantidadeQuestaoDiariasAcertosMatematica;
+    private int quantidadeQuestaoDiariasAcertosHumanas;
+    private int quantidadeQuestaoDiariasAcertosLinguagem;
+    private int quantidadeQuestaoDiariasAcertosNatureza;
+    private int quantidadeQuestaoDiariasRespondidaMatematica;
+    private int quantidadeQuestaoDiariasRespondidaHumanas;
+    private int quantidadeQuestaoDiariasRespondidaLinguagem;
+    private int quantidadeQuestaoDiariasRespondidaNatureza;
+
+    private int quantidadeQuestaoAreasAcertosMatematica;
+    private int quantidadeQuestaoAreasAcertosHumanas;
+    private int quantidadeQuestaoAreasAcertosLinguagem;
+    private int quantidadeQuestaoAreasAcertosNatureza;
+    private int quantidadeQuestaoAreasRespondidaMatematica;
+    private int quantidadeQuestaoAreasRespondidaHumanas;
+    private int quantidadeQuestaoAreasRespondidaLinguagem;
+    private int quantidadeQuestaoAreasRespondidaNatureza;
 }
 

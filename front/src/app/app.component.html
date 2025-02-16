@@ -4,11 +4,11 @@
             <div>
                 <p (click)="goSobre()">Sobre</p>
             </div>
-            <div>
+            <div class="perfil">
                 <p (click)="goPerfil()">Perfil</p>
             </div>
             <div>
-                <p>Acessibilidade</p>
+                <p (click)="mostrarAlertaAcessibilidade()">Acessibilidade</p>
             </div>
         </div>
     </ng-container>
@@ -46,3 +46,6 @@
 <body>
     <router-outlet></router-outlet>
 </body>
+
+
+<app-alerta-excecao #alerta></app-alerta-excecao>

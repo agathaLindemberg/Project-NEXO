@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-alerta-excecao',
@@ -7,10 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AlertaExcecaoComponent {
   @Input() mensagem: string = '';
+  @Input() tipo: 'aviso' | 'erro' | 'confirmacao' = 'aviso';
   visivel: boolean = false;
 
-  mostrar(mensagem: string) {
+  mostrar(mensagem: string, tipo: 'aviso' | 'erro' | 'confirmacao' = 'aviso') {
     this.mensagem = mensagem;
+    this.tipo = tipo;
     this.visivel = true;
 
     setTimeout(() => {

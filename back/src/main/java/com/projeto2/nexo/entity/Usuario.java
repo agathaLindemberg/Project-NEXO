@@ -30,15 +30,4 @@ public class Usuario {
     private Integer qtd_moedas;
     private Integer qtd_dicas;
     private Integer qtd_pulos;
-    private Integer qtd_lixeira;
-    private Boolean desafio_completo;
-
-    private Integer qtd_acertos_matematica;
-    private Integer qtd_questoes_matematica;
-    private Integer qtd_acertos_humanas;
-    private Integer qtd_questoes_humanas;
-    private Integer qtd_acertos_natureza;
-    private Integer qtd_questoes_natureza;
-    private Integer qtd_acertos_linguagens;
-    private Integer qtd_questoes_linguagens;
 }

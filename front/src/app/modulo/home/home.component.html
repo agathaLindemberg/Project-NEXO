@@ -1,17 +1,20 @@
 <div class="container">
     <div class="home-card">
-    <header>
-        <img src="assets/imagens/icone-logo.png" alt="Ícone Logo">
-        <h1>Nexo</h1>
-        <h2>Escolha seu desafio e teste seus conhecimentos.</h2>
-    </header>
+        <header>
+            <img src="assets/imagens/icone-logo.png" alt="Ícone Logo">
+            <h1>Nexo</h1>
+            <h2>Escolha seu desafio e teste seus conhecimentos.</h2>
+        </header>
 
-    <body>
-        <button type="submit" routerLink="/desafio-diario">Desafio Diário</button>
-        <button type="submit" routerLink="/escolher-area">Áreas do Conhecimento</button>
-        <button type="submit" routerLink="/configuracoes">Configurações</button>
-        <button type="submit" routerLink="/plano-nexo">Planos Nexo</button>
-        <button type="submit" routerLink="/sobre">Sobre</button>
-    </body>
+        <body>
+            <button type="submit" routerLink="/desafio-diario">Desafio Diário</button>
+            <button type="submit" routerLink="/escolher-area">Áreas do Conhecimento</button>
+            <button type="submit" (click)="mostrarAlertaConfig()">Configurações</button>
+            <button type="submit" (click)="mostrarAlertaPlanos()">Planos Nexo</button>
+            <button type="submit" routerLink="/sobre">Sobre</button>
+        </body>
     </div>
 </div>
+
+
+<app-alerta-excecao #alerta></app-alerta-excecao>

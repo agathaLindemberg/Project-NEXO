@@ -3,9 +3,12 @@ package com.projeto2.nexo.rest.service;
 import com.projeto2.nexo.entity.Usuario;
 import com.projeto2.nexo.rest.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -48,5 +51,9 @@ public class UsuarioService {
         }
 
         return usuario;
+    }
+
+    public Optional<Usuario> getUsuarioById(Integer id) {
+        return repository.findById(id);
     }
 }

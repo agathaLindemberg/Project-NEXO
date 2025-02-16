@@ -10,12 +10,12 @@ import java.util.List;
 @Getter
 public class EstatisticasQuestaoUsuarioRequestDTO {
     private Integer idUsuario;
-    private Integer numeroQuestoesRespondidas;
-    private List<Integer> idsQuestoesRespondidas;
-    private List<Integer> idsQuestoesAcertadas;
+    private List<Integer> idsQuestoesRespondidasDiaria;
+    private List<Integer> idsQuestoesAcertadasDiaria;
+    private List<Integer> idsQuestoesRespondidasPorArea;
+    private List<Integer> idsQuestoesAcertadasPorArea;
+
     private BigDecimal tempoMedio;
-    private boolean finalizado;
     private Integer sequenciaAtualAcertos;
     private Integer maiorSequenciaAcertos;
-
 }

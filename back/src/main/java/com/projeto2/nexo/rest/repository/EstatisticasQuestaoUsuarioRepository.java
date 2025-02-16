@@ -9,10 +9,17 @@ import org.springframework.data.repository.query.Param;
 import java.util.Date;
 import java.util.Optional;
 
-public interface EstatisticasQuestaoUsuarioRepository extends JpaRepository<EstatisticasQuestoesUsuario, Integer>{
+public interface EstatisticasQuestaoUsuarioRepository extends JpaRepository<EstatisticasQuestoesUsuario, Integer> {
 
     @Query(value = "SELECT * FROM estatisticas_questoes_usuario WHERE data_realizada::DATE = :data", nativeQuery = true)
     EstatisticasQuestoesUsuario findByData(@Param("data") Date data);
+
     @Query("SELECT MAX(e.dataRealizada) FROM EstatisticasQuestoesUsuario e WHERE e.idUsuario = :idUsuario")
     Date findUltimaDataComEstatisticas(@Param("idUsuario") Integer idUsuario);
+
+    @Query(value = "SELECT e.* FROM estatisticas_questoes_usuario e " +
+            " WHERE e.data_realizada::DATE = :dataRealizada ::DATE and e.id_usuario = :idUsuario ", nativeQuery = true)
+    EstatisticasQuestoesUsuario findByIdUsuarioAndDataRealizada(
+            @Param("idUsuario") Integer idUsuario,
+            @Param("dataRealizada") Date dataRealizada);
 }

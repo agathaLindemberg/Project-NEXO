@@ -6,8 +6,7 @@
             </div>
             <div class="perfil-info">
                 <h1>{{ usuario?.nome }}</h1>
-                <button type="submit" routerLink="/" [ngClass]="{'active': abaAtiva === 'perfil'}">Editar
-                    Perfil</button>
+                <button type="button" [routerLink]="['/editar-perfil', usuario?.id]">Editar Perfil</button>
             </div>
         </div>
 
