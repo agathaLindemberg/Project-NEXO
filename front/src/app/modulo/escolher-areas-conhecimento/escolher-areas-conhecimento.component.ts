@@ -43,10 +43,24 @@ export class EscolherAreasConhecimentoComponent implements OnInit {
    */
   selecionarArea(area: number): void {
     const progressoSalvo = JSON.parse(localStorage.getItem('progressoDesafio') || '{}');
+    progressoSalvo.progressoPorArea = progressoSalvo.progressoPorArea || {};
+
+
     const areaAtual = progressoSalvo.areaAtual || 0; // Área atual em andamento
     const areasRealizadas = progressoSalvo.areasRealizadas || []; // Áreas já concluídas
     const questoesRespondidasDiaria = progressoSalvo.progressoDiario?.ids_questoes_respondidas?.length || 0; // Questões respondidas no desafio diário
     const questoesRespondidasArea = progressoSalvo.progressoPorArea?.[areaAtual]?.ids_questoes_respondidas?.length || 0; // Questões respondidas na área atual
+
+    if (questoesRespondidasDiaria == 0) {
+      this.alerta.mostrar('Faça os desafios diários primeiro!', 'erro');
+      return;
+    }
+
+
+    if(!this.usuario) {
+      this.alerta.mostrar('Você precisa estar logado para comprar as áreas do conhecimento... :(', 'erro');
+      return;
+    }
 
     // Verifica se o usuário tem moedas suficientes
     if (this.usuario.qtd_moedas < 50) {

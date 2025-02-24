@@ -104,9 +104,7 @@ export class EstatisticasDiariaComponent implements OnInit {
       : "0%";
 
     // Atualiza o tempo médio e a maior sequência de acertos
-    this.tempoMedio = progresso.tempoMedio.toFixed(2);
-    console.log(this.tempoMedio);
-    
+    this.tempoMedio = progresso.tempoMedio.toFixed(2);    
     this.acertosSeguidos = progresso.maiorSequenciaAcertos;
 
     // Inicializa o gráfico

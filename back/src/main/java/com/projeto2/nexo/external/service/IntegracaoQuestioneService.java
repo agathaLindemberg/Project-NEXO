@@ -18,8 +18,10 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
 import java.time.Duration;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -66,7 +68,7 @@ public class IntegracaoQuestioneService {
                 .build();
 
         HttpUrl.Builder urlBuilder =
-                HttpUrl.parse("http://bancodequestoes.ifce.edu.br/api/public/enem-questions").newBuilder();
+                Objects.requireNonNull(HttpUrl.parse(url)).newBuilder();
         urlBuilder.addQueryParameter("qtd_questions", String.valueOf(requestParametrosDTO.getQtd_questions()));
         urlBuilder.addQueryParameter("dificulty", String.valueOf(requestParametrosDTO.getDificulty()));
         urlBuilder.addQueryParameter("fk_course_id", String.valueOf(requestParametrosDTO.getFk_course_id()));
